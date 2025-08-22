@@ -45,7 +45,8 @@ module.exports = {
                 ignoreProperty: ['className', 'style'],
                 ignoreComponent: ['Link', 'NavLink']
             }
-        ]
+        ],
+        'max-len': ['error', { ignoreComments: true, code: 100 }]
     },
     globals: {
         __IS_DEV__: true,
