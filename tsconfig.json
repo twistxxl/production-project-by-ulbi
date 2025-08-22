@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "skipLibCheck": true,
+
         //сборка через webpack, так что outDir не важен
         "outDir": "./dist",
         "noImplicitAny": true,
@@ -14,7 +16,7 @@
         "baseUrl": ".",
         "paths": {
             "*": ["./src/*"]
-        }
+        },
 
     },
     "ts-node": {
