@@ -17,13 +17,13 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
     };
 
     return (
-        <div className={classNames(stl.Sidebar, {[stl.collapsed]: collapsed}, [className])}>
-            <button 
-            onClick={onToggle}
+        <div className={classNames(stl.Sidebar, { [stl.collapsed]: collapsed }, [className])}>
+            <button
+                onClick={onToggle}
             >toggle</button>
             <div className={stl.switchers}>
-            <ThemeSwitcher  />
-            <LangSwitcher className={stl.langSwitcher}/>
+                <ThemeSwitcher />
+                <LangSwitcher className={stl.langSwitcher} />
             </div>
         </div>
     );
