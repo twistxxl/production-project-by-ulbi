@@ -15,7 +15,9 @@
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths": {
-            "*": ["./src/*"]
+            "*": ["src/*"],
+            "shared/*": ["src/shared/*"],
+            // "widgets/*": ["src/widgets/*"]
         },
 
     },
@@ -23,7 +25,11 @@
         "compilerOptions": {
             "module": "commonjs"
         }
-    }
+    },
+    "include": [
+        "src/**/*",
+        "./config/jest/setupTests.ts"
+    ]
 } 
 
 // {
