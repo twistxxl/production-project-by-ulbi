@@ -1,3 +1,4 @@
+import { BugButton } from "app/providers/ThemeProvider/ErrorBoundary"
 import { useTranslation } from "react-i18next"
 
 
@@ -10,6 +11,7 @@ const MainPage = () => {
             <h1>
                 {t('Главная страница')}
             </h1>
+            <BugButton />
         </div>
     )
 
