@@ -1,8 +1,9 @@
 {
-    "Тестовый пример": "Test example",
-    "Перевод": "Translate",
-    "Главная страница": "Main page",
-    "Язык": "English",
-    "Страница не найдена": "Page not found",
-    "Загрузка": "Sexy loading..."
+  "Тестовый пример": "Test example",
+  "Перевод": "Translate",
+  "Главная страница": "Main page",
+  "Язык": "English",
+  "Страница не найдена": "Page not found",
+  "Загрузка": "Sexy loading...",
+  "toggle": "toggle"
 }
