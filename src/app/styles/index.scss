@@ -3,7 +3,12 @@
 @import "themes/light";
 @import "themes/dark";
 
-body {
+// .app,
+// .app_modal {
+//     font: var(--font-m);
+//     color: var(--primary-color);
+// }
+.body {
     font: var(--font-m);
     color: var(--primary-color);
 }
