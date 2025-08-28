@@ -15,7 +15,7 @@ export const LangSwitcher = ({ className, short }: LangSwitcherProps) => {
     };
     const localStorageLang = localStorage.getItem('i18nextLng');
     const langSidebar = () => {
-        let version: string = '';
+        let version: string
 
         if(!short && localStorageLang === 'ru') {
             version = "Русский"
