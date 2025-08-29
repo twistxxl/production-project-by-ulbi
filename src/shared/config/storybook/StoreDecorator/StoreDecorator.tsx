@@ -4,7 +4,7 @@ import { DeepPartial } from '@reduxjs/toolkit';
 
 // eslint-disable-next-line react/display-name
 export const StoreDecorator = (state: DeepPartial<StateSchema>) => (StoryComponent: Story) => (
-    <StoreProvider initialState={state}>
+    <StoreProvider initialState={state as StateSchema}>
         <StoryComponent />
     </StoreProvider>
 );
