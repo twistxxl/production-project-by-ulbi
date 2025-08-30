@@ -15,6 +15,8 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 300;
 
+//нет смысла мемоизировать
+
 export const Modal = (props: ModalProps) => {
     const {
         className,

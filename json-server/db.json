@@ -25,5 +25,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": { 
+    "first": "John",
+    "last": "Doe",
+    "age": 30,
+    "currency": "USD",
+    "country": "USA",
+    "city": "New York",
+    "username": "admin",
+    "avatar": "https://avatars.mds.yandex.net/i?id=8d2e9ed0fe13252aea35ff27f4101f37_l-12752869-images-thumbs&n=13"
+   }
 }

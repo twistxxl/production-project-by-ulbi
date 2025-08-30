@@ -1,5 +1,8 @@
 import { classNames } from "shared/lib/classNames/classNames";
 import stl from './Text.module.scss';
+import { memo } from "react";
+
+
 
 export enum TextTheme {
     PRIMARY = 'primary',
@@ -13,7 +16,7 @@ interface TextProps {
     theme?: TextTheme
 }
 
-export const Text = (props: TextProps) => {
+export const Text = memo((props: TextProps) => {
 
     const { className, title, text, theme } = props
 
@@ -23,4 +26,6 @@ export const Text = (props: TextProps) => {
             {text && <p className={stl.text}>{text}</p>}
         </div>
     );
-};
+})
+
+Text.displayName = 'Text'
