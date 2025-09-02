@@ -9,7 +9,6 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 interface InputProps extends HTMLInputProps {
     className?: string;
     value?: string;
-    // eslint-disable-next-line no-unused-vars
     onChange?: (value: string) => void;
     autofocus?: boolean;
 }
@@ -69,7 +68,6 @@ export const Input = memo((props: InputProps) => {
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onSelect={onSelect}
-                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...otherProps}
                 />
                 {isFocused && (
@@ -82,6 +80,3 @@ export const Input = memo((props: InputProps) => {
         </div>
     );
 });
-
-
-Input.displayName = 'Input';

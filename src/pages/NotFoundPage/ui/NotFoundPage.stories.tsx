@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { THEME as Theme } from 'app/providers/ThemeProvider';
+import { Theme } from 'app/providers/ThemeProvider';
 import { NotFoundPage } from './NotFoundPage';
 
 export default {
@@ -12,7 +12,6 @@ export default {
     },
 } as ComponentMeta<typeof NotFoundPage>;
 
-// eslint-disable-next-line react/jsx-props-no-spreading
 const Template: ComponentStory<typeof NotFoundPage> = (args) => <NotFoundPage {...args} />;
 
 export const Normal = Template.bind({});

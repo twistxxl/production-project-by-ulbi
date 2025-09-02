@@ -1,10 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo, useState } from 'react';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher/ui/ThemeSwitcher';
-import { LangSwitcher } from 'widgets/LangSwitcher/ui/LangSwitcher';
-import { Button, ButtonSize, ThemeButton } from 'shared/ui/Button/Button';
+import { memo, useMemo, useState } from 'react';
+import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
+import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import cls from './Sidebar.module.scss';
-import { SidebarItemList } from '../../../Sidebar/model/items';
+import { SidebarItemsList } from '../../model/items';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
@@ -18,6 +18,14 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         setCollapsed((prev) => !prev);
     };
 
+    const itemsList = useMemo(() => SidebarItemsList.map((item) => (
+        <SidebarItem
+            item={item}
+            collapsed={collapsed}
+            key={item.path}
+        />
+    )), [collapsed]);
+
     return (
         <div
             data-testid="sidebar"
@@ -27,20 +35,14 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 data-testid="sidebar-toggle"
                 onClick={onToggle}
                 className={cls.collapseBtn}
-                theme={ThemeButton.BACKGROUND_INVERTED}
+                theme={ButtonTheme.BACKGROUND_INVERTED}
                 size={ButtonSize.L}
                 square
             >
                 {collapsed ? '>' : '<'}
             </Button>
             <div className={cls.items}>
-                {SidebarItemList.map((item) => (
-                    <SidebarItem
-                        key={item.path}
-                        item={item}
-                        collapsed={collapsed}
-                    />
-                ))}
+                {itemsList}
             </div>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
@@ -51,6 +53,4 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
             </div>
         </div>
     );
-})
-
-Sidebar.displayName = 'Sidebar';
+});

@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { THEME } from 'app/providers/ThemeProvider';
+import { Theme as THEME } from 'app/providers/ThemeProvider';
 import { PageError } from './PageError';
 
 export default {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { THEME } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { Theme as THEME } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 export const themeMock = {
     theme: THEME.LIGHT,

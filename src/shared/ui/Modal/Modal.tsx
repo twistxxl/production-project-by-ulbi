@@ -1,8 +1,10 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import React, {
+    MutableRefObject,
     ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Portal } from 'shared/ui/Portal/Portal';
+import { useTheme } from 'app/providers/ThemeProvider';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
@@ -15,8 +17,6 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 300;
 
-//нет смысла мемоизировать
-
 export const Modal = (props: ModalProps) => {
     const {
         className,
@@ -28,13 +28,14 @@ export const Modal = (props: ModalProps) => {
 
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
-    const timerRef = useRef<ReturnType<typeof setTimeout>>();
+    const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+    const { theme } = useTheme();
 
-    useEffect(()=> {
-        if(isOpen) {
-            setIsMounted(true)
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
         }
-    }, [isOpen])
+    }, [isOpen]);
 
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -68,18 +69,18 @@ export const Modal = (props: ModalProps) => {
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };
 
-    if(lazy && !isMounted) {
+    if (lazy && !isMounted) {
         return null;
     }
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
+            <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
                 <div className={cls.overlay} onClick={closeHandler}>
                     <div
                         className={cls.content}

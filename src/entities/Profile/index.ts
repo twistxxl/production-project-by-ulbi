@@ -1,13 +1,17 @@
-export type {
+export {
     Profile,
     ProfileSchema,
-} from './model/types/profile'
+} from './model/types/profile';
 
 export {
     profileActions,
     profileReducer,
-} from './model/slice/profileSlice'
+} from './model/slice/profileSlice';
 
-export { fetchProfileData } from './model/fetchProfileData/fetchProfileData'
+export {
+    fetchProfileData,
+} from './model/services/fetchProfileData/fetchProfileData';
 
-export {ProfileCard} from '../Profile/ui/ProfileCard/ProfileCard'
+export {
+    ProfileCard,
+} from './ui/ProfileCard/ProfileCard';

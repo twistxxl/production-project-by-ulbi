@@ -1,13 +1,13 @@
 export enum Currency {
-    RUB = 'RUB',
-    USD = 'USD',
-    EUR = 'EUR'
+    'RUB' = 'RUB',
+    'EUR' = 'EUR',
+    'USD' = 'USD',
 }
 
 export enum Country {
     Russia = 'Russia',
-    USA = 'USA',
+    Belarus = 'Belarus',
     Ukraine = 'Ukraine',
-    Belarus = 'Belarus', 
-    Kazakhstan = 'Kazakhstan'
+    Kazakhstan = 'Kazahstan',
+    Armenia = 'Armenia',
 }

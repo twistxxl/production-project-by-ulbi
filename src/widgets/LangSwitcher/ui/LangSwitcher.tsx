@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme as ThemeButton } from 'shared/ui/Button/Button';
 import { memo } from 'react';
 
 interface LangSwitcherProps {
@@ -16,7 +16,7 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
     };
     const localStorageLang = localStorage.getItem('i18nextLng');
     const langSidebar = () => {
-        let version: string
+        let version: string = ''
 
         if(!short && localStorageLang === 'ru') {
             version = "Русский"
@@ -27,6 +27,7 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
         } else if (short && localStorageLang === 'en') {
             version = "EN"
         }
+
         return version
     }
 

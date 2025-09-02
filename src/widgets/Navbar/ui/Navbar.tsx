@@ -1,11 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useState } from 'react';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import React, { memo, useCallback, useState } from 'react';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
     className?: string;
@@ -33,7 +33,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         return (
             <div className={classNames(cls.Navbar, {}, [className])}>
                 <Button
-                    theme={ThemeButton.CLEAR_INVERTED}
+                    theme={ButtonTheme.CLEAR_INVERTED}
                     className={cls.links}
                     onClick={onLogout}
                 >
@@ -46,7 +46,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <Button
-                theme={ThemeButton.CLEAR_INVERTED}
+                theme={ButtonTheme.CLEAR_INVERTED}
                 className={cls.links}
                 onClick={onShowModal}
             >
@@ -60,6 +60,4 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             )}
         </div>
     );
-})
-
-Navbar.displayName = 'Navbar'
+});
