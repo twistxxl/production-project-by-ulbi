@@ -20,6 +20,7 @@ declare module "*.gif";
 
 // eslint-disable-next-line no-unused-vars
 declare const __IS_DEV__: boolean
+declare const __API__: string
 
 declare module 'glob';
 declare module 'minimatch';

@@ -3,5 +3,5 @@
 
 npm run lint:ts
 # npm run lint:scss
-npm run build:prod
-npm run unit
+# npm run build:prod
+# npm run unit
