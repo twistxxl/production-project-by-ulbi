@@ -11,10 +11,27 @@
     margin-left: auto;
 }
 
-.data {
-    margin-top: 30px;
-}
+
 
 .input {
     margin-top: 10px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.avatarWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.editing {
+        border: 2px solid var(--inverted-primary-color);
+
 }

@@ -12,8 +12,8 @@
     // Компилятор будет обрабатывать не только TS файлы, но и JS файлы
     "allowJs": true,
     "strict": true,
-    "moduleResolution": "node",
     // "ignoreDeprecations": "6.0",
+    "moduleResolution": "node",
     // Для абсолютного импорта
     "baseUrl": ".",
     "paths": {
