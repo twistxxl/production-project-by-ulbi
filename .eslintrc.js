@@ -24,6 +24,7 @@ module.exports = {
         'react-hooks',
     ],
     rules: {
+        'linebreak-style': 'off',
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         indent: [2, 4],
