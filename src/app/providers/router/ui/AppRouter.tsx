@@ -1,6 +1,6 @@
-import React, { memo, Suspense, useMemo } from 'react';
+import { memo, Suspense, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { routeConfig } from 'shared/config/routeConfig/routeConfig';
+import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
@@ -8,12 +8,10 @@ import { getUserAuthData } from 'entities/User';
 const AppRouter = () => {
     const isAuth = useSelector(getUserAuthData);
 
-    const routes = useMemo(() => Object.values(routeConfig).filter((route) => {
+    const routes = useMemo(() => Object.values(routeConfig).filter((route: AppRoutesProps) => {
         if (route.authOnly && !isAuth) {
             return false;
         }
-
-        //TODO: переделать папки(сейчас микс ломает лоигку(APpRouter в особенности))
 
         return true;
     }), [isAuth]);

@@ -10,6 +10,7 @@
     ]
   ],
   "plugins": [
-    "i18next-extract"
+    //временно для сторибуков
+    // "i18next-extract"
   ]
 }
