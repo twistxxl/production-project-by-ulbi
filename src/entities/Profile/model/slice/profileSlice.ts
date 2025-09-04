@@ -26,8 +26,8 @@ export const profileSlice = createSlice({
             state.form = {
                 ...state.data,
                 ...action.payload,
-            }
-        }
+            };
+        },
     },
     extraReducers: (builder) => {
         builder
