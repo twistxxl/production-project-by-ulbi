@@ -5,24 +5,22 @@ import { Currency } from 'entities/Currency';
 import { updateProfileData } from './updateProfileData';
 import { ValidateProfileError } from '../../types/profile';
 
-
 const profileData = {
-            username: 'admin',
-            first: 'blabla',
-            lastname: 'dili',
-            age: 22,
-            country: Country.Belarus,
-            city: 'Minsk',
-            currency: Currency.USD,
-        }
+    username: 'admin',
+    first: 'blabla',
+    lastname: 'dili',
+    age: 22,
+    country: Country.Belarus,
+    city: 'Minsk',
+    currency: Currency.USD,
+};
 
 describe('updateProfileData.test', () => {
-
     test('success ', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {
-                form: profileData
-            }
+                form: profileData,
+            },
         });
 
         thunk.api.put.mockReturnValue(Promise.resolve({ data: profileData }));
@@ -36,8 +34,8 @@ describe('updateProfileData.test', () => {
     test('error ', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {
-                form: profileData
-            }
+                form: profileData,
+            },
         });
         thunk.api.put.mockReturnValue(Promise.resolve({ status: 403 }));
 
@@ -46,23 +44,21 @@ describe('updateProfileData.test', () => {
         expect(thunk.api.put).toHaveBeenCalled();
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toEqual([
-            ValidateProfileError.SERVER_ERROR
-        ])
-      
+            ValidateProfileError.SERVER_ERROR,
+        ]);
     });
     test('validate error ', async () => {
         const thunk = new TestAsyncThunk(updateProfileData, {
             profile: {
-                form: {...profileData, lastname: ''}
-            }
+                form: { ...profileData, lastname: '' },
+            },
         });
 
         const result = await thunk.callThunk();
 
         expect(result.meta.requestStatus).toBe('rejected');
         expect(result.payload).toEqual([
-            ValidateProfileError.INCORRECT_USER_DATA
-        ])
-      
+            ValidateProfileError.INCORRECT_USER_DATA,
+        ]);
     });
 });
