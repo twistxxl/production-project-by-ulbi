@@ -6,7 +6,7 @@ export enum TextTheme {
     PRIMARY = 'primary',
     ERROR = 'error',
 }
-export enum TextAlignEnum {
+export enum TextAlign {
     RIGHT = 'right',
     LEFT = 'left',
     CENTER = 'center',
@@ -21,7 +21,7 @@ interface TextProps {
     title?: string;
     text?: string;
     theme?: TextTheme;
-    align?: TextAlignEnum
+    align?: TextAlign
     size?: TextSize
 }
 
@@ -31,7 +31,7 @@ export const Text = memo((props: TextProps) => {
         text,
         title,
         theme = TextTheme.PRIMARY,
-        align = TextAlignEnum.LEFT,
+        align = TextAlign.LEFT,
         size = TextSize.M,
     } = props;
 
