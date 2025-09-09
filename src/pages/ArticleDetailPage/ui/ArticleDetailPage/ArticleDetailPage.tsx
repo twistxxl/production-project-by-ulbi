@@ -15,6 +15,7 @@ import {
 import { AddCommentForm } from 'features/AddcommentForm';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Page } from 'shared/ui/Page/Page';
 import { articleDetailsCommentsReducer, getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import stl from './ArticleDetailPage.module.scss';
@@ -44,9 +45,9 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
 
     if (!id) {
         return (
-            <div className={classNames(stl.ArticleDetailPage, {}, [className])}>
+            <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
                 {t('Статья не найдена :(')}
-            </div>
+            </Page>
         );
     }
 
@@ -55,7 +56,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
     };
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(stl.ArticleDetailPage, {}, [className])}>
+            <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
                 <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>{t('Назад')}</Button>
                 <ArticleDetails id={id} />
                 <Text className={stl.commentTitle} title={t('Комментарии')} />
@@ -64,7 +65,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
                     isLoading={isLoading}
                     comments={comments}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
 
     );
