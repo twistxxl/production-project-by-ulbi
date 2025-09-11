@@ -73,8 +73,8 @@ export const ArticlesPageFilter = memo((props: ArticlesPageFilterProps) => {
     const onChangeType = useCallback((value: ArticleType) => {
         dispatch(articlePageActions.setPage(1));
         dispatch(articlePageActions.setType(value));
-        debouncedFetchData();
-    }, [dispatch, debouncedFetchData]);
+        fetchData();
+    }, [dispatch, fetchData]);
     return (
         <div className={classNames(stl.ArticlesPageFilter, {}, [className])}>
             <div className={stl.sortWrapper}>
