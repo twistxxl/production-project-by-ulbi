@@ -4,8 +4,8 @@ import { Flex, FlexProps } from '../Flex/Flex';
 type VStackProps = Omit<FlexProps, 'direction'>;
 
 export const VStack = memo((props: VStackProps) => {
-    const { className, align = 'start'} = props;
+    const { className, align = 'start', ...otherProps } = props;
     return (
-        <Flex {...props} align={align} direction="column" />
+        <Flex {...otherProps} align={align} direction="column" />
     );
 });
