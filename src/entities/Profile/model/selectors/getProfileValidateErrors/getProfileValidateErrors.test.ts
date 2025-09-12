@@ -8,13 +8,13 @@ describe('getProfileValidateErrors.test', () => {
             profile: {
                 validateErrors: [
                     ValidateProfileError.NO_USER_DATA,
-                    ValidateProfileError.INCORRECT_AGE
-                ]
-            }
+                    ValidateProfileError.INCORRECT_AGE,
+                ],
+            },
         };
         expect(getProfileValidateErrors(state as StateSchema)).toEqual([
             ValidateProfileError.NO_USER_DATA,
-            ValidateProfileError.INCORRECT_AGE
+            ValidateProfileError.INCORRECT_AGE,
         ]);
     });
     test('should work with empty state', () => {

@@ -6,10 +6,8 @@ export const themeMock = {
     setTheme: jest.fn(),
 };
 
-export const ThemeProviderMock = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <div className={`app ${themeMock.theme}`}>
-            {children}
-        </div>
-    );
-};
+export const ThemeProviderMock = ({ children }: { children: React.ReactNode }) => (
+    <div className={`app ${themeMock.theme}`}>
+        {children}
+    </div>
+);

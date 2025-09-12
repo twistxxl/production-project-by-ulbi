@@ -13,12 +13,12 @@ describe('getProfileError.test', () => {
             country: Country.Belarus,
             city: 'Minsk',
             currency: Currency.USD,
-        }
+        };
 
         const state: DeepPartial<StateSchema> = {
             profile: {
-                form: profileData
-            }
+                form: profileData,
+            },
         };
         expect(getProfileForm(state as StateSchema)).toEqual(profileData);
     });

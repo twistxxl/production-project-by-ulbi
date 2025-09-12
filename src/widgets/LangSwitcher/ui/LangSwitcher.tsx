@@ -16,20 +16,20 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
     };
     const localStorageLang = localStorage.getItem('i18nextLng');
     const langSidebar = () => {
-        let version: string = ''
+        let version: string = '';
 
-        if(!short && localStorageLang === 'ru') {
-            version = "Русский"
+        if (!short && localStorageLang === 'ru') {
+            version = 'Русский';
         } else if (!short && localStorageLang === 'en') {
-            version = "English"
+            version = 'English';
         } else if (short && localStorageLang === 'ru') {
-            version = "РУ"
+            version = 'РУ';
         } else if (short && localStorageLang === 'en') {
-            version = "EN"
+            version = 'EN';
         }
 
-        return version
-    }
+        return version;
+    };
 
     return (
         <Button
@@ -40,6 +40,6 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
             {t(langSidebar())}
         </Button>
     );
-})
+});
 
-LangSwitcher.displayName = 'LangSwitcher'
+LangSwitcher.displayName = 'LangSwitcher';

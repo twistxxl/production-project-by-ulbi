@@ -5,8 +5,8 @@ describe('getProfileError.test', () => {
     test('should return error', () => {
         const state: DeepPartial<StateSchema> = {
             profile: {
-                error: '666'
-            }
+                error: '666',
+            },
         };
         expect(getProfileError(state as StateSchema)).toBe('666');
     });

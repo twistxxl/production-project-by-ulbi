@@ -31,9 +31,9 @@ Normal.decorators = [StoreDecorator({
             country: Country.Belarus,
             city: 'Minsk',
             currency: Currency.USD,
-            avatar: avatar,
-        }
-    }
+            avatar,
+        },
+    },
 })];
 
 export const Dark = Template.bind({});

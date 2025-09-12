@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'ulbi-tv-plugin',
     ],
     rules: {
         'linebreak-style': 'off',
@@ -47,7 +48,7 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to', 'target'],
+                ignoreAttribute: ['data-testid', 'to', 'target', 'justify', 'align', 'direction', 'gap'],
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 150 }],
@@ -57,6 +58,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        'twistxxl-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,
