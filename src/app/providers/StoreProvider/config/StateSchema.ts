@@ -4,13 +4,11 @@ import { LoginSchema } from 'features/AuthByUsername';
 import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { CombinedState, Dispatch } from 'redux';
+import { CombinedState } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
-import { To } from 'history';
-import { NavigateOptions } from 'react-router';
 import { ArticleDetailSchema } from 'entities/Article';
-import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailPage';
+import { ArticleDetailsPageSchema } from 'pages/ArticleDetailPage';
 import { AddCommentFormSchema } from 'features/AddcommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlePage';
 import { UISchema } from 'features/UI';
@@ -24,9 +22,9 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailSchema;
-    articleDetailsComments?: ArticleDetailsCommentsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
