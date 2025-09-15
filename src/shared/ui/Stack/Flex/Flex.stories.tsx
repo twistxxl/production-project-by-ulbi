@@ -27,7 +27,7 @@ Row.args = {
 
 export const RowGap4 = Template.bind({});
 RowGap4.args = {
-    gap: '4',
+    gap: '8',
     children: (
         <>
             <div>first</div>
