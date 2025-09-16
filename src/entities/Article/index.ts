@@ -6,7 +6,7 @@ export {
     ArticleType,
 } from './model/types/article';
 export type { ArticleDetailSchema } from './model/types/articleDetailSchema';
-export { ArticleList } from './ui/ArticleList/ArticleList';
+export { ArticleList } from './ui/ArticleList/ArticleList2';
 export { ArticleViewSelector } from './ui/ArticleViewSelector/ArticleViewSelector';
 export { ArticleSortSelector } from './ui/ArticleSortSelector/ArticleSortSelector';
 export { ArticleTypeTabs } from './ui/ArticleTypeTabs/ArticleTypeTabs';
