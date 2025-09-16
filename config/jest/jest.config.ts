@@ -1,4 +1,5 @@
 import path from 'path';
+import { report } from 'process';
 
 export default {
     globals: {
@@ -35,4 +36,14 @@ export default {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
+    reporters: [
+        'default',
+        ['jest-html-reporters', {
+            publicPath: '<rootDir>/report/unit',
+            filename: 'jest-report.html',
+            openReport: true,
+            inlineSource: true,
+            // reportName: 'Jest Report',
+        }],
+    ],
 };
