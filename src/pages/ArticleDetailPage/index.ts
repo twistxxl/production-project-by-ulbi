@@ -1,8 +1,8 @@
 export { ArticleDetailPageAsync as ArticleDetailPage } from './ui/ArticleDetailPage/ArticleDetailPage.lazy';
 
-export { ArticleDetailsCommentsSchema } from '../ArticleDetailPage/model/types/ArticleDetailsCommentsSchema';
-export {
+export type { ArticleDetailsCommentsSchema } from '../ArticleDetailPage/model/types/ArticleDetailsCommentsSchema';
+export type {
     ArticleDetailsRecommendationsSchema,
 } from '../ArticleDetailPage/model/types/articleDetailsRecommendationsSchema';
 
-export { ArticleDetailsPageSchema } from '../ArticleDetailPage/model/types/index';
+export type { ArticleDetailsPageSchema } from '../ArticleDetailPage/model/types/index';
