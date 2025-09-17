@@ -24,19 +24,13 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
     const { className } = props;
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
-    const dispatch = useAppDispatch();
-    const comments = useSelector(getArticleComments.selectAll);
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const onSendComment = useCallback((text: string) => {
-        dispatch(sendCommentForArticle(text));
-    }, [dispatch]);
-    if (!id) {
-        return (
-            <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
-                {t('Статья не найдена :(')}
-            </Page>
-        );
-    }
+    // if (!id) {
+    //     return (
+    //         <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
+    //             {t('Статья не найдена :(')}
+    //         </Page>
+    //     );
+    // }
 
     const reducers: ReducersList = {
         articleDetailsPage: articleDetailsPageReducer,
