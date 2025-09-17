@@ -45,7 +45,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     } = props;
 
-    const { t } = useTranslation('profile');
+    const { t } = useTranslation();
 
     if (isLoading) {
         return (

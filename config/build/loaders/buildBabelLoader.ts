@@ -1,10 +1,16 @@
+import babelRemovePropsPlugin from '../../babel/babelRemovePropsPlugin';
 import { BuildOptions } from '../types/config';
 
-export function buildBabelLoader(options: BuildOptions) {
-    const { isDev } = options;
+interface BuildBabelLoaderProps extends BuildOptions {
+    isDev: boolean;
+    isTsx?: boolean;
+}
+
+export function buildBabelLoader(options: BuildBabelLoaderProps) {
+    const { isDev, isTsx } = options;
 
     return {
-        test: /\.(js|jsx|tsx)$/,
+        test: isTsx ? /\.(tsx|jsx)$/ : /\.(js|ts)$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
@@ -18,7 +24,22 @@ export function buildBabelLoader(options: BuildOptions) {
                             keyAsDefaultValue: true,
                         },
                     ],
-                ],
+                    [
+                        '@babel/plugin-transform-typescript',
+                        {
+                            isTSX: isTsx,
+                            // allExtensions: true,
+                        },
+                    ],
+                    '@babel/plugin-transform-runtime',
+                    isTsx && [
+                        babelRemovePropsPlugin,
+                        {
+                            props: ['data-testid'],
+                        },
+                    ],
+                    isDev && require.resolve('react-refresh/babel'),
+                ].filter(Boolean),
             },
         },
     };
