@@ -49,6 +49,7 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
+                    'border',
                     'as',
                     'data-testid',
                     'to',
