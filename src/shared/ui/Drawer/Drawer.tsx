@@ -1,9 +1,9 @@
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { memo, useCallback, useEffect } from 'react';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { useDrag } from '@use-gesture/react';
 import { a, useSpring, config } from '@react-spring/web';
-import { useModal } from 'shared/lib/hooks/useModal/useModal';
+import { useTheme } from '@/app/providers/ThemeProvider';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Overlay } from '../Overlay/Overlay';
 import { useAnimationLibs } from '../../lib/components/AnimationProvider/index';
 import stl from './Drawer.module.scss';

@@ -1,6 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { memo, useCallback } from 'react';
-import { ListBox } from 'shared/ui/Popups';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { ListBox } from '@/shared/ui/Popups';
 import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {
@@ -30,8 +30,8 @@ export const CountrySelect = memo((props: CountrySelectProps) => {
             className={classNames('', {}, [className])}
             items={options}
             value={value}
-            defaultValue={'Укажите страну'}
-            label={'Укажите страну'}
+            defaultValue="Укажите страну"
+            label="Укажите страну"
             onChange={onChangeHandler}
             readonly={readonly}
             direction="top right"

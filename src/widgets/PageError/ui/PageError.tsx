@@ -1,7 +1,7 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared/ui/Button/Button';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button } from '@/shared/ui/Button/Button';
 import stl from './PageError.module.scss';
 
 interface PageErrorProps {
@@ -11,7 +11,7 @@ interface PageErrorProps {
 export const PageError: FC<PageErrorProps> = ({ className }) => {
     const { t } = useTranslation();
 
-    const reloadPage = () => location.reload();
+    const reloadPage = () => window.location.reload();
 
     return (
         <div className={classNames(stl.PageError, {}, [className])}>

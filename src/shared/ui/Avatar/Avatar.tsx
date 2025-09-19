@@ -1,5 +1,5 @@
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { FC, useMemo } from 'react';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import stl from './Avatar.module.scss';
 
 interface AvatarProps {
@@ -26,8 +26,6 @@ export const Avatar: FC<AvatarProps> = ({
             alt={alt}
             style={styles}
             className={classNames(stl.Avatar, mods, [className])}
-        >
-            {/* код здесь */}
-        </img>
+        />
     );
 };

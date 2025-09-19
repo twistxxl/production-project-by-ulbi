@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import AvatarTest from 'shared/assets/icons/avatar_test.jpg';
+import AvatarTest from '@/shared/assets/icons/avatar_test.jpg';
 import { Select } from './Select';
 
 export default {
