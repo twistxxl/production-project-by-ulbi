@@ -10,15 +10,20 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
     children: React.ReactNode;
     theme?: CardTheme;
+    max?: boolean;
 }
 
 export const Card = (props: CardProps) => {
     const {
-        className, children, theme = CardTheme.NORMAL, ...otherProps
+        className,
+        children,
+        theme = CardTheme.NORMAL,
+        max,
+        ...otherProps
     } = props;
     return (
         <div
-            className={classNames(stl.Card, {}, [className, stl[theme]])}
+            className={classNames(stl.Card, { [stl.max]: max }, [className, stl[theme]])}
             {...otherProps}
         >
             {children}

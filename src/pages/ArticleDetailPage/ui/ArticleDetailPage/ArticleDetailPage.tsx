@@ -1,18 +1,13 @@
-import { FC, memo, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import { FC, memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { ArticleDetails } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from '@/widgets/Page/Page';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 import { articleDetailsPageReducer } from '../../model/slices';
-import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice';
-import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
+import { ArticleRating } from '@/features/articleRating';
 import stl from './ArticleDetailPage.module.scss';
-import { sendCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 
@@ -22,15 +17,11 @@ interface ArticleDetailPageProps {
 
 const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
     const { className } = props;
-    const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
-    // if (!id) {
-    //     return (
-    //         <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
-    //             {t('Статья не найдена :(')}
-    //         </Page>
-    //     );
-    // }
+
+    if (!id) {
+        return null;
+    }
 
     const reducers: ReducersList = {
         articleDetailsPage: articleDetailsPageReducer,
@@ -40,6 +31,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
             <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
                 <ArticleDetailsPageHeader />
                 <ArticleDetails id={id} />
+                <ArticleRating articleId={id} />
                 <ArticleRecommendationsList />
                 <ArticleDetailsComments id={id} />
             </Page>
