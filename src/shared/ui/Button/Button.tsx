@@ -54,6 +54,7 @@ export const Button = memo((props: ButtonProps) => {
             type="button"
             className={classNames(cls.Button, mods, [className])}
             disabled={disabled}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}
         >
             {children}
