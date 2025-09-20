@@ -70,7 +70,11 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'ulbi-tv-plugin/path-checker': ['error', { alias: '@' }],
-        'ulbi-tv-plugin/public-api-imports': ['error', { alias: '@' }],
+        'ulbi-tv-plugin/public-api-imports': ['error', 
+            {
+                alias: '@',
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreProvider.tsx'],
+            }],
     },
     globals: {
         __IS_DEV__: true,
