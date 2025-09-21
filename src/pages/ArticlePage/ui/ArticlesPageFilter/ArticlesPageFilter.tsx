@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     ArticleSortField,
-    ArticleSortSelector,
     ArticleType,
-    ArticleTypeTabs,
     ArticleView,
-    ArticleViewSelector,
-} from '@/entities/Article';
+    } from '@/entities/Article';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Input } from '@/shared/ui/Input';
 import { Card } from '@/shared/ui/Card';
