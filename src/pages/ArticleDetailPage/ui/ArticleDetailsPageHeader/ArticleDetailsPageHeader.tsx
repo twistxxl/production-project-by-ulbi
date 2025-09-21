@@ -2,11 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticles, getRouteArticleEdit } from '@/shared/const/router';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getArticleDetailsData } from '@/entities/Article/model/selectors/articleDetails';
-// import { getCanEditArticle } from 'pages/ArticleDetailsPage/model/selectors/article';
 import cls from './ArticleDetailsPageHeader.module.scss';
 
 interface ArticleDetailsPageHeaderProps {
@@ -20,17 +19,18 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
     const { id } = useParams<{ id: string }>();
 
     const canEdit = Boolean(id);
-    // const canEdit = useSelector(getCanEditArticle);
     const article = useSelector(getArticleDetailsData);
 
     const onBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
+        navigate(getRouteArticles());
     }, [navigate]);
 
     const onEditArticle = useCallback(() => {
         // Неправильно: navigate(`${RoutePath.article_edit}${article?.id}/edit`);
         // Правильно: замените :id на actual id
-        navigate(RoutePath.article_edit.replace(':id', article?.id || ''));
+        if (article) {
+        navigate(getRouteArticleEdit(article?.id));
+        }
     }, [article?.id, navigate]);
 
     return (

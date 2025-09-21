@@ -9,7 +9,7 @@ import {
 } from '@/entities/User';
 import { Text, TextTheme } from '@/shared/ui/Text';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticleCreate } from '@/shared/const/router';
 import { HStack } from '@/shared/ui/Stack';
 import { NotificationButton } from '@/features/notificationButton';
 import { AvatarDropdown } from '@/features/avatarDropdown';
@@ -38,7 +38,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 <Text theme={TextTheme.INVERTED} className={cls.appName} title={t('ULBUtvAPP')} />
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
-                    to={RoutePath.article_create}
+                    to={getRouteArticleCreate()}
                     className={cls.createBtn}
                 >
                     {t('Создать статью')}
