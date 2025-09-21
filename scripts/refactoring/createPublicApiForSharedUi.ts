@@ -16,7 +16,6 @@ function isAbsolute(value: string) {
     return layers.some((layer) => value.startsWith(layer));
 }
 
-
 componentsDirs?.forEach((dir) => {
     const indexFilePath = `${dir.getPath()}/index.ts`;
     const indexFile = dir.getSourceFile(indexFilePath);
@@ -26,9 +25,7 @@ componentsDirs?.forEach((dir) => {
 
         file.save();
     }
-    
-})
-
+});
 
 files.forEach((sourceFile) => {
     const importDeclarations = sourceFile.getImportDeclarations();
@@ -38,9 +35,8 @@ files.forEach((sourceFile) => {
         const valueWithoutAlias = value.replace('@/', '');
 
         const segments = valueWithoutAlias.split('/');
-        const isSharedLayer = segments[0] === 'shared'
-        const isSharedSlice = segments[1] === 'ui'
-       
+        const isSharedLayer = segments[0] === 'shared';
+        const isSharedSlice = segments[1] === 'ui';
 
         if (isAbsolute(valueWithoutAlias) && isSharedLayer && isSharedSlice) {
             const result = valueWithoutAlias.split('/').slice(0, 3).join('/');

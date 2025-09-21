@@ -23,6 +23,7 @@ module.exports = {
         'i18next',
         'react-hooks',
         'ulbi-tv-plugin',
+        'unused-imports',
     ],
     rules: {
         'linebreak-style': 'off',
@@ -43,6 +44,7 @@ module.exports = {
         'no-shadow': 'off',
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'unused-imports/no-unused-imports': 'error',
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [
             'error',

@@ -12,7 +12,6 @@ const defaultAsyncReducers: ReducersList = {
     profile: profileReducer,
     articleDetails: articleDetailsReducer,
     addCommentForm: addCommentFormReducer,
-    // @ts-ignore
     articleDetailsPage: articleDetailsPageReducer,
 };
 
