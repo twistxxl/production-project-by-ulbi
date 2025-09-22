@@ -9,6 +9,7 @@ import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/Dynam
 import stl from './AddCommentForm.module.scss';
 import { addCommentFormTextSelector } from '../../model/selectors/addCommentFormSelectors';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSilce';
+import { HStack } from '@/shared/ui/Stack';
 
 export interface AddCommentFormProps {
     className?: string;
@@ -34,20 +35,27 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(stl.AddCommentForm, {}, [className])}>
+            <HStack
+            data-testid="AddCommentForm"
+            max 
+            justify="between" 
+            className={classNames(stl.AddCommentForm, {}, [className])}
+            >
                 <Input
+                    data-testid="AddCommentForm.Input"
                     className={stl.input}
                     placeholder={t('Ваш комментарий')}
                     value={text}
                     onChange={onCommentTextChange}
                 />
                 <Button
+                    data-testid="AddCommentForm.Button"
                     theme={ButtonTheme.OUTLINE}
                     onClick={onSendHandler}
                 >
                     {t('Отправить')}
                 </Button>
-            </div>
+            </HStack>
         </DynamicModuleLoader>
     );
 });

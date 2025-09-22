@@ -55,6 +55,7 @@ export const Flex = memo((props: FlexProps) => {
         direction = 'row',
         gap,
         max,
+        ...otherProps
     } = props;
 
     const classes = [
@@ -69,7 +70,7 @@ export const Flex = memo((props: FlexProps) => {
         [stl.max]: max,
     };
     return (
-        <div className={classNames(stl.Flex, mods, classes)}>
+        <div className={classNames(stl.Flex, mods, classes)} {...otherProps}>
             {children}
         </div>
     );
