@@ -13,7 +13,7 @@ import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Input } from '@/shared/ui/Input';
 import { Card } from '@/shared/ui/Card';
-import { SortOrder } from '@/shared/types';
+import { SortOrder } from '@/shared/types/sort';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { articlePageActions } from '../ArticlePage/model/slices/articlePageSlice';
 import stl from './ArticlesPageFilter.module.scss';
