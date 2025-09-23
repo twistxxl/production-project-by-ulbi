@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
 export interface UseInfiniteScrollOptions {
-    callback?: () => void
-    triggerRef: React.RefObject<HTMLElement>
-    wrapperRef: React.RefObject<HTMLElement>
+    callback?: () => void;
+    triggerRef: React.RefObject<HTMLElement>;
+    wrapperRef: React.RefObject<HTMLElement>;
 }
 
 export function useInfiniteScroll(props: UseInfiniteScrollOptions) {

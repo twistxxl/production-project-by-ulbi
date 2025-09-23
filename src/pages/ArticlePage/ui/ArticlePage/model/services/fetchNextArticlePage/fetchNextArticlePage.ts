@@ -9,24 +9,21 @@ import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList';
 import { articlePageActions } from '../../slices/articlePageSlice';
 
 interface fetchNextArticlePageProps {
-    page?: number
+    page?: number;
 }
 
 export const fetchNextArticlePage = createAsyncThunk<
     void,
     void,
     ThunkConfig<string>
->(
-    'articlesPage/fetchNextArticlePage',
-    async (_, thunkApi) => {
-        const { getState, dispatch } = thunkApi;
-        const hasMore = getArticlesPageHasMore(getState());
-        const page = getArticlesPageNumber(getState());
-        const isLoading = getArticlesPageIsLoading(getState());
+>('articlesPage/fetchNextArticlePage', async (_, thunkApi) => {
+    const { getState, dispatch } = thunkApi;
+    const hasMore = getArticlesPageHasMore(getState());
+    const page = getArticlesPageNumber(getState());
+    const isLoading = getArticlesPageIsLoading(getState());
 
-        if (hasMore && !isLoading) {
-            dispatch(articlePageActions.setPage(page + 1));
-            dispatch(fetchArticlesList({}));
-        }
-    },
-);
+    if (hasMore && !isLoading) {
+        dispatch(articlePageActions.setPage(page + 1));
+        dispatch(fetchArticlesList({}));
+    }
+});

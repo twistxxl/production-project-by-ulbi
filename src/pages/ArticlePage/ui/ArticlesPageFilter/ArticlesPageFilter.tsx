@@ -2,11 +2,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import {
-    ArticleSortField,
-    ArticleType,
-    ArticleView,
-    } from '@/entities/Article';
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
@@ -23,7 +19,6 @@ import {
     getArticlesPageSort,
     getArticlesPageType,
     getArticlesPageView,
-
 } from '../ArticlePage/model/selectors/articlesPageSelectors';
 import { fetchArticlesList } from '../ArticlePage/model/services/fetchArticlesList/fetchArticlesList';
 
@@ -47,33 +42,48 @@ export const ArticlesPageFilter = memo((props: ArticlesPageFilterProps) => {
 
     const debouncedFetchData = useDebounce(fetchData, 500);
 
-    const onChangeView = useCallback((view: ArticleView) => {
-        dispatch(articlePageActions.setView(view));
-    }, [dispatch]);
+    const onChangeView = useCallback(
+        (view: ArticleView) => {
+            dispatch(articlePageActions.setView(view));
+        },
+        [dispatch],
+    );
 
-    const onChangeSort = useCallback((newSort: ArticleSortField) => {
-        dispatch(articlePageActions.setSort(newSort));
-        dispatch(articlePageActions.setPage(1));
-        debouncedFetchData();
-    }, [dispatch, debouncedFetchData]);
+    const onChangeSort = useCallback(
+        (newSort: ArticleSortField) => {
+            dispatch(articlePageActions.setSort(newSort));
+            dispatch(articlePageActions.setPage(1));
+            debouncedFetchData();
+        },
+        [dispatch, debouncedFetchData],
+    );
 
-    const onChangeOrder = useCallback((newOrder: SortOrder) => {
-        dispatch(articlePageActions.setPage(1));
-        dispatch(articlePageActions.setOrder(newOrder));
-        debouncedFetchData();
-    }, [dispatch, debouncedFetchData]);
+    const onChangeOrder = useCallback(
+        (newOrder: SortOrder) => {
+            dispatch(articlePageActions.setPage(1));
+            dispatch(articlePageActions.setOrder(newOrder));
+            debouncedFetchData();
+        },
+        [dispatch, debouncedFetchData],
+    );
 
-    const onChangeSearch = useCallback((search: string) => {
-        dispatch(articlePageActions.setPage(1));
-        dispatch(articlePageActions.setSearch(search));
-        debouncedFetchData();
-    }, [dispatch, debouncedFetchData]);
+    const onChangeSearch = useCallback(
+        (search: string) => {
+            dispatch(articlePageActions.setPage(1));
+            dispatch(articlePageActions.setSearch(search));
+            debouncedFetchData();
+        },
+        [dispatch, debouncedFetchData],
+    );
 
-    const onChangeType = useCallback((value: ArticleType) => {
-        dispatch(articlePageActions.setPage(1));
-        dispatch(articlePageActions.setType(value));
-        fetchData();
-    }, [dispatch, fetchData]);
+    const onChangeType = useCallback(
+        (value: ArticleType) => {
+            dispatch(articlePageActions.setPage(1));
+            dispatch(articlePageActions.setType(value));
+            fetchData();
+        },
+        [dispatch, fetchData],
+    );
     return (
         <div className={classNames(stl.ArticlesPageFilter, {}, [className])}>
             <div className={stl.sortWrapper}>
@@ -92,7 +102,11 @@ export const ArticlesPageFilter = memo((props: ArticlesPageFilterProps) => {
                     placeholder={t('Поиск')}
                 />
             </Card>
-            <ArticleTypeTabs value={type} onChangeType={onChangeType} className={stl.tabs} />
+            <ArticleTypeTabs
+                value={type}
+                onChangeType={onChangeType}
+                className={stl.tabs}
+            />
         </div>
     );
 });

@@ -3,7 +3,10 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
 import { Overlay } from '../Overlay/Overlay';
-import { AnimationProvider, useAnimationLibs } from '../../lib/components/AnimationProvider/index';
+import {
+    AnimationProvider,
+    useAnimationLibs,
+} from '../../lib/components/AnimationProvider/index';
 import stl from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
 
@@ -12,7 +15,7 @@ interface DrawerProps {
     children?: React.ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
-    lazy?: boolean
+    lazy?: boolean;
 }
 
 const height = window.innerHeight - 100;
@@ -23,19 +26,9 @@ export const DrawerContent = memo((props: DrawerProps) => {
         y: height,
     }));
     const { theme } = useTheme();
-    const {
-        className,
-        children,
-        isOpen,
-        onClose,
-        lazy,
-    } = props;
+    const { className, children, isOpen, onClose, lazy } = props;
 
-    const {
-        isClosing,
-        isMounted,
-        closeHandler,
-    } = useModal({
+    const { isClosing, isMounted, closeHandler } = useModal({
         animationDelay: 300,
         onClose,
         isOpen,
@@ -88,7 +81,10 @@ export const DrawerContent = memo((props: DrawerProps) => {
             }
         },
         {
-            from: () => [0, y.get()], filterTaps: true, bounds: { top: 0 }, rubberband: true,
+            from: () => [0, y.get()],
+            filterTaps: true,
+            bounds: { top: 0 },
+            rubberband: true,
         },
     );
 
@@ -108,7 +104,13 @@ export const DrawerContent = memo((props: DrawerProps) => {
 
     return (
         <Portal>
-            <div className={classNames(stl.Drawer, mods, [className, theme, 'app_drawer'])}>
+            <div
+                className={classNames(stl.Drawer, mods, [
+                    className,
+                    theme,
+                    'app_drawer',
+                ])}
+            >
                 <Overlay onClick={closeHandler} />
                 <Spring.a.div
                     className={stl.content}
@@ -123,7 +125,6 @@ export const DrawerContent = memo((props: DrawerProps) => {
                 </Spring.a.div>
             </div>
         </Portal>
-
     );
 });
 
@@ -133,9 +134,7 @@ const DrawerAsync = (props: DrawerProps) => {
     if (!isLoaded) {
         return null;
     }
-    return (
-        <DrawerContent {...props} />
-    );
+    return <DrawerContent {...props} />;
 };
 
 export const Drawer = (props: DrawerProps) => (

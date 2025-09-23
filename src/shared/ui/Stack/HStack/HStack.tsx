@@ -5,7 +5,5 @@ type HStackProps = Omit<FlexProps, 'direction'>;
 
 export const HStack = memo((props: HStackProps) => {
     const { className, ...otherProps } = props;
-    return (
-        <Flex {...props} className={className} direction="row" />
-    );
+    return <Flex {...props} className={className} direction="row" />;
 });

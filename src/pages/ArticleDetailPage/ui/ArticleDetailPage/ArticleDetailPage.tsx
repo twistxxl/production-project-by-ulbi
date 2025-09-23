@@ -2,7 +2,10 @@ import { FC, memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { ArticleDetails } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Page } from '@/widgets/Page';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 import { articleDetailsPageReducer } from '../../model/slices';
@@ -28,7 +31,9 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
     };
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <Page className={classNames(stl.ArticleDetailPage, {}, [className])}>
+            <Page
+                className={classNames(stl.ArticleDetailPage, {}, [className])}
+            >
                 <ArticleDetailsPageHeader />
                 <ArticleDetails id={id} />
                 <ArticleRating articleId={id} />
@@ -36,7 +41,6 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
                 <ArticleDetailsComments id={id} />
             </Page>
         </DynamicModuleLoader>
-
     );
 };
 

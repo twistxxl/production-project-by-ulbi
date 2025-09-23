@@ -3,8 +3,8 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import stl from './Select.module.scss';
 
 export interface SelectOption<T extends string> {
-    value: T,
-    content: string
+    value: T;
+    content: string;
 }
 
 interface SelectProps<T extends string> {
@@ -12,29 +12,26 @@ interface SelectProps<T extends string> {
     label?: string;
     options?: SelectOption<T>[];
     value?: T;
-    onChange?: (value: T) => void
-    readonly?: boolean
+    onChange?: (value: T) => void;
+    readonly?: boolean;
 }
 
 export const Select = <T extends string>(props: SelectProps<T>) => {
-    const {
-        className,
-        label,
-        options,
-        value,
-        onChange,
-        readonly,
-    } = props;
+    const { className, label, options, value, onChange, readonly } = props;
 
-    const optionsList = useMemo(() => options?.map((opt) => (
-        <option
-            className={stl.option}
-            value={opt.value}
-            key={opt.value}
-        >
-            {opt.content}
-        </option>
-    )), [options]);
+    const optionsList = useMemo(
+        () =>
+            options?.map((opt) => (
+                <option
+                    className={stl.option}
+                    value={opt.value}
+                    key={opt.value}
+                >
+                    {opt.content}
+                </option>
+            )),
+        [options],
+    );
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
         if (onChange) {
@@ -42,16 +39,10 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
         }
     };
 
-    const mods: Mods = {
-
-    };
+    const mods: Mods = {};
     return (
         <div className={classNames(stl.Wrapper, mods, [className])}>
-            {label && (
-                <span className={stl.label}>
-                    {`${label}>`}
-                </span>
-            )}
+            {label && <span className={stl.label}>{`${label}>`}</span>}
             <select
                 disabled={readonly}
                 className={stl.select}

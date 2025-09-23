@@ -13,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleDetailPage>;
 
-const Template: ComponentStory<typeof ArticleDetailPage> = (args) => <ArticleDetailPage {...args} />;
+const Template: ComponentStory<typeof ArticleDetailPage> = (args) => (
+    <ArticleDetailPage {...args} />
+);
 
 const article: Article = {
     id: '1',
@@ -57,8 +59,10 @@ const article: Article = {
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-})];
+Normal.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+    }),
+];

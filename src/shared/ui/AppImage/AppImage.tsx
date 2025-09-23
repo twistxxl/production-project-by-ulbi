@@ -14,7 +14,7 @@ export const AppImage = memo((props: AppImageProps) => {
         fallback,
         errorFallback,
         ...otherProps
-     } = props;
+    } = props;
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
 
@@ -38,7 +38,5 @@ export const AppImage = memo((props: AppImageProps) => {
         return errorFallback;
     }
 
-    return (
-        <img className={className} src={src} alt={alt} {...otherProps} />
-    );
+    return <img className={className} src={src} alt={alt} {...otherProps} />;
 });

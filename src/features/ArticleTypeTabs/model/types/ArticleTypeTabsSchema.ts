@@ -1,3 +1,1 @@
-export interface ArticleTypeTabsSchema {
-    
-}
+export interface ArticleTypeTabsSchema {}

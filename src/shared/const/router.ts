@@ -26,7 +26,6 @@ export const getRouteForbidden = () => '/forbidden';
 // lastPage
 export const getRouteNotFound = () => '*';
 
-
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: getRouteMain(),
     [AppRoutes.ABOUT]: getRouteAbout(),

@@ -23,7 +23,10 @@ export const Card = (props: CardProps) => {
     } = props;
     return (
         <div
-            className={classNames(stl.Card, { [stl.max]: max }, [className, stl[theme]])}
+            className={classNames(stl.Card, { [stl.max]: max }, [
+                className,
+                stl[theme],
+            ])}
             {...otherProps}
         >
             {children}

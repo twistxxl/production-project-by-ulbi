@@ -5,10 +5,16 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Input } from '@/shared/ui/Input';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import stl from './AddCommentForm.module.scss';
 import { addCommentFormTextSelector } from '../../model/selectors/addCommentFormSelectors';
-import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSilce';
+import {
+    addCommentFormActions,
+    addCommentFormReducer,
+} from '../../model/slice/addCommentFormSilce';
 import { HStack } from '@/shared/ui/Stack';
 
 export interface AddCommentFormProps {
@@ -25,9 +31,12 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     const { t } = useTranslation();
     const text = useSelector(addCommentFormTextSelector);
     const dispatch = useAppDispatch();
-    const onCommentTextChange = useCallback((value: string) => {
-        dispatch(addCommentFormActions.setText(value));
-    }, [dispatch]);
+    const onCommentTextChange = useCallback(
+        (value: string) => {
+            dispatch(addCommentFormActions.setText(value));
+        },
+        [dispatch],
+    );
     const onSendHandler = useCallback(() => {
         onSendComment(text || '');
         onCommentTextChange('');
@@ -36,10 +45,10 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     return (
         <DynamicModuleLoader reducers={reducers}>
             <HStack
-            data-testid="AddCommentForm"
-            max 
-            justify="between" 
-            className={classNames(stl.AddCommentForm, {}, [className])}
+                data-testid="AddCommentForm"
+                max
+                justify="between"
+                className={classNames(stl.AddCommentForm, {}, [className])}
             >
                 <Input
                     data-testid="AddCommentForm.Input"

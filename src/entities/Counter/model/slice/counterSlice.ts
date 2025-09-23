@@ -18,7 +18,7 @@ export const counterSlice = buildSlice({
         },
         add: (state, payload) => {
             state.value += payload.payload;
-        }
+        },
     },
 });
 
@@ -26,5 +26,5 @@ export const counterSlice = buildSlice({
 export const {
     actions: counterActions,
     reducer: counterReducer,
-    useActions: useCounterActions
- } = counterSlice;
+    useActions: useCounterActions,
+} = counterSlice;

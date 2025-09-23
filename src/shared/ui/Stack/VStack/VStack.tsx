@@ -5,7 +5,5 @@ type VStackProps = Omit<FlexProps, 'direction'>;
 
 export const VStack = memo((props: VStackProps) => {
     const { className, align = 'start', ...otherProps } = props;
-    return (
-        <Flex {...otherProps} align={align} direction="column" />
-    );
+    return <Flex {...otherProps} align={align} direction="column" />;
 });

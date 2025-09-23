@@ -8,7 +8,7 @@ import { Button, ButtonTheme as ThemeButton } from '@/shared/ui/Button';
 import stl from './ThemeSwitcher.module.scss';
 
 interface ThemeSwitcherProps extends React.HTMLAttributes<HTMLButtonElement> {
-    className?: string
+    className?: string;
 }
 
 export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {

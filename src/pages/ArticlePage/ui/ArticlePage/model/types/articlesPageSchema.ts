@@ -12,9 +12,9 @@ export interface ArticlesPageSchema extends EntityState<Article> {
     error?: string;
 
     // pagination
-    page: number
-    limit: number
-    hasMore: boolean
+    page: number;
+    limit: number;
+    hasMore: boolean;
 
     // filters
     view: ArticleView;
@@ -22,5 +22,5 @@ export interface ArticlesPageSchema extends EntityState<Article> {
     sort: ArticleSortField;
     search: string;
     type: ArticleType;
-    _inited: boolean
+    _inited: boolean;
 }

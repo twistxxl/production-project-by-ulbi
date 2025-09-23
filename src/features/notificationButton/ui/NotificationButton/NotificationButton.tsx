@@ -22,10 +22,7 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
         setIsOpen(!isOpen);
     }, [isOpen]);
     const trigger = (
-        <Button
-            theme={ButtonTheme.CLEAR}
-            onClick={toggleDrawer}
-        >
+        <Button theme={ButtonTheme.CLEAR} onClick={toggleDrawer}>
             <Icon inverted Svg={NotificationIcon} />
         </Button>
     );
@@ -33,7 +30,9 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
         <div>
             <BrowserView>
                 <Popover
-                    className={classNames(stl.NotificationButton, {}, [className])}
+                    className={classNames(stl.NotificationButton, {}, [
+                        className,
+                    ])}
                     direction="bottom left"
                     trigger={trigger}
                 >
@@ -49,6 +48,5 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
                 </AnimationProvider>
             </MobileView>
         </div>
-
     );
 });
