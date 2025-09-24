@@ -721,7 +721,10 @@
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
       },
-      "avatar": "https://yakutsk.ru/wp-content/uploads/2022/07/12/bystrov_haker.jpeg"
+      "avatar": "https://yakutsk.ru/wp-content/uploads/2022/07/12/bystrov_haker.jpeg",
+      "jsonSettings": {
+        "theme": "app_light_theme"
+      }
     },
     {
       "id": "2",

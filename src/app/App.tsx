@@ -5,7 +5,7 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { AppRouter } from '@/app/providers/router';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
-import { getUserInited, userActions } from '@/entities/User';
+import { getUserInited, useJsonSettingsByKey, userActions } from '@/entities/User';
 
 function App() {
     const { theme } = useTheme();
