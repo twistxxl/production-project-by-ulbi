@@ -13,18 +13,21 @@ import { ArticleRating } from '@/features/articleRating';
 import stl from './ArticleDetailPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import { getFeatureFlag } from '@/shared/lib/features';
+import { getFeatureFlag, toggleFeatures } from '@/shared/lib/features';
 import { Counter } from '@/entities/Counter';
+import { Card } from '@/shared/ui/Card';
 
 interface ArticleDetailPageProps {
     className?: string;
 }
 
+const CounterRedesigned = () => {
+    return <div>CounterRedesigned</div>
+}
+
 const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
     const { className } = props;
     const { id } = useParams<{ id: string }>();
-    const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
-    const isCounterEnabled = getFeatureFlag('isCounterEnabled');
 
     if (!id) {
         return null;
@@ -33,6 +36,15 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
     const reducers: ReducersList = {
         articleDetailsPage: articleDetailsPageReducer,
     };
+
+    const ArticleRatingCard = toggleFeatures({
+        name: 'isArticleRatingEnabled',
+        on: () => <ArticleRating articleId={id} />,
+        off: () => <Card>{'Rating disabled'}</Card>,
+    });
+
+
+    
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page
@@ -40,8 +52,7 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
             >
                 <ArticleDetailsPageHeader />
                 <ArticleDetails id={id} />
-                {isCounterEnabled && <Counter />}
-                {isArticleRatingEnabled && <ArticleRating articleId={id} />}
+                {ArticleRatingCard}
                 <ArticleRecommendationsList />
                 <ArticleDetailsComments id={id} />
             </Page>
