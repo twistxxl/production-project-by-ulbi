@@ -15,7 +15,7 @@ import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDet
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { getFeatureFlag, ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 import { Counter } from '@/entities/Counter';
-import { Card } from '@/shared/ui/Card';
+import { Card } from '@/shared/ui/deprecated/Card';
 
 interface ArticleDetailPageProps {
     className?: string;
