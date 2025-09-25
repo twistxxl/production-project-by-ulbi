@@ -13,7 +13,7 @@ import { ArticleRating } from '@/features/articleRating';
 import stl from './ArticleDetailPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
-import { getFeatureFlag, toggleFeatures } from '@/shared/lib/features';
+import { getFeatureFlag, ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 import { Counter } from '@/entities/Counter';
 import { Card } from '@/shared/ui/Card';
 
@@ -37,11 +37,11 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
         articleDetailsPage: articleDetailsPageReducer,
     };
 
-    const ArticleRatingCard = toggleFeatures({
-        name: 'isArticleRatingEnabled',
-        on: () => <ArticleRating articleId={id} />,
-        off: () => <Card>{'Rating disabled'}</Card>,
-    });
+    // const ArticleRatingCard = toggleFeatures({
+    //     name: 'isArticleRatingEnabled',
+    //     on: () => <ArticleRating articleId={id} />,
+    //     off: () => ,
+    // });
 
 
     
@@ -52,7 +52,10 @@ const ArticleDetailPage: FC<ArticleDetailPageProps> = (props) => {
             >
                 <ArticleDetailsPageHeader />
                 <ArticleDetails id={id} />
-                {ArticleRatingCard}
+                <ToggleFeatures 
+                feature={'isArticleRatingEnabled'} 
+                on={<ArticleRating articleId={id} />} 
+                off={<Card>{'Rating disabled'}</Card>} />
                 <ArticleRecommendationsList />
                 <ArticleDetailsComments id={id} />
             </Page>
