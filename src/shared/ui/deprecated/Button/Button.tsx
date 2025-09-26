@@ -6,7 +6,7 @@ export enum ButtonTheme {
     CLEAR = 'clear',
     CLEAR_INVERTED = 'clearInverted',
     OUTLINE = 'outline',
-    OUTLINE_INVERTED = 'outlineInverted',
+    OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
 }
@@ -19,11 +19,29 @@ export enum ButtonSize {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
+    /**
+     * Тема кнопки. Отвечает за визуал (в рамке, без стилей, противоположный теме приложения цвет и тд)
+     */
     theme?: ButtonTheme;
+    /**
+     * Флаг, делающий кнопку квадратной
+     */
     square?: boolean;
+    /**
+     * Размер кнопки в соответствии с дизайн системой
+     */
     size?: ButtonSize;
+    /**
+     * Флаг, отвечающий за работу кнопки
+     */
     disabled?: boolean;
+    /**
+     * Содержимое кнопки
+     */
     children?: ReactNode;
+    /**
+     * Увеличивает кнопку на всю свободную ширину
+     */
     fullWidth?: boolean;
 }
 
@@ -31,7 +49,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
 export const Button = memo((props: ButtonProps) => {
     const {
         className,
@@ -57,7 +74,6 @@ export const Button = memo((props: ButtonProps) => {
             type="button"
             className={classNames(cls.Button, mods, [className])}
             disabled={disabled}
-            // eslint-disable-next-line react/jsx-props-no-spreading
             {...otherProps}
         >
             {children}

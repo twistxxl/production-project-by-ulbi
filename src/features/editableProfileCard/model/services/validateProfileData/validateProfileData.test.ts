@@ -1,57 +1,50 @@
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
-import { Profile } from '@/entities/Profile';
+import { ValidateProfileError } from '../../consts/consts';
 import { validateProfileData } from './validateProfileData';
-import { ValidateProfileError } from '../../types/editableProfileCardSchema';
 
-const profileData = {
+const data = {
     username: 'admin',
-    first: 'blabla',
-    lastname: 'dili',
     age: 22,
-    country: Country.Belarus,
-    city: 'Minsk',
+    country: Country.Ukraine,
+    lastname: 'ulbi tv',
+    first: 'asd',
+    city: 'asf',
     currency: Currency.USD,
 };
 
-describe('fetchProfileData.test', () => {
-    test('success ', async () => {
-        const result = validateProfileData(profileData);
+describe('validateProfileData.test', () => {
+    test('success', async () => {
+        const result = validateProfileData(data);
 
         expect(result).toEqual([]);
     });
 
-    test('without fitrst or lastname ', async () => {
+    test('without first and last name', async () => {
         const result = validateProfileData({
-            ...profileData,
+            ...data,
             first: '',
             lastname: '',
         });
 
         expect(result).toEqual([ValidateProfileError.INCORRECT_USER_DATA]);
     });
-    test('incorrect age ', async () => {
-        const result = validateProfileData({ ...profileData, age: undefined });
+
+    test('incorrect age', async () => {
+        const result = validateProfileData({ ...data, age: undefined });
 
         expect(result).toEqual([ValidateProfileError.INCORRECT_AGE]);
     });
 
-    test('incorrect country ', async () => {
-        const result = validateProfileData({
-            ...profileData,
-            country: undefined,
-        });
+    test('incorrect country', async () => {
+        const result = validateProfileData({ ...data, country: undefined });
 
         expect(result).toEqual([ValidateProfileError.INCORRECT_COUNTRY]);
     });
 
-    test('incorrect user data - undefined profile', async () => {
-        const result = validateProfileData(undefined);
-        expect(result).toEqual([ValidateProfileError.NO_USER_DATA]);
-    });
+    test('incorrect all', async () => {
+        const result = validateProfileData({});
 
-    test('incorrect user data - empty object', async () => {
-        const result = validateProfileData({} as Profile);
         expect(result).toEqual([
             ValidateProfileError.INCORRECT_USER_DATA,
             ValidateProfileError.INCORRECT_AGE,

@@ -1,11 +1,11 @@
-import { memo, useCallback } from 'react';
+import { memo, ReactNode, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import stl from './Tabs.module.scss';
 import { Card, CardTheme } from '../Card/Card';
+import cls from './Tabs.module.scss';
 
 export interface TabItem {
     value: string;
-    content: React.ReactNode;
+    content: ReactNode;
 }
 
 interface TabsProps {
@@ -16,19 +16,21 @@ interface TabsProps {
 }
 
 /**
+ * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
 export const Tabs = memo((props: TabsProps) => {
-    const { className, tabs, value, onTabClick } = props;
-    // используем замыкание потому что обычный onClick на блоке принимается event: any
-    const onClickHandle = useCallback(
-        (tab: TabItem) => () => onTabClick(tab),
+    const { className, tabs, onTabClick, value } = props;
+
+    const clickHandle = useCallback(
+        (tab: TabItem) => () => {
+            onTabClick(tab);
+        },
         [onTabClick],
     );
 
     return (
-        <div className={classNames(stl.Tabs, {}, [className])}>
+        <div className={classNames(cls.Tabs, {}, [className])}>
             {tabs.map((tab) => (
                 <Card
                     theme={
@@ -36,9 +38,9 @@ export const Tabs = memo((props: TabsProps) => {
                             ? CardTheme.NORMAL
                             : CardTheme.OUTLINED
                     }
+                    className={cls.tab}
                     key={tab.value}
-                    className={stl.tab}
-                    onClick={onClickHandle(tab)}
+                    onClick={clickHandle(tab)}
                 >
                     {tab.content}
                 </Card>

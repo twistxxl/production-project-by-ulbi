@@ -1,8 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { bindActionCreators, createSlice } from '@reduxjs/toolkit';
 import { SliceCaseReducers, CreateSliceOptions } from '@reduxjs/toolkit/dist';
+import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
-import { useAppDispatch } from '../hooks/useAppDispatch/useAppDispatch';
-import { bindActionCreators } from '@reduxjs/toolkit';
 
 export function buildSlice<
     State,
@@ -12,12 +11,14 @@ export function buildSlice<
     const slice = createSlice(options);
 
     const useActions = (): typeof slice.actions => {
-        const dispatch = useAppDispatch();
+        const dispatch = useDispatch();
+
         // @ts-ignore
-        return useMemo(() => {
+        return useMemo(
             // @ts-ignore
-            return bindActionCreators(slice.actions, dispatch);
-        }, [dispatch]);
+            () => bindActionCreators(slice.actions, dispatch),
+            [dispatch],
+        );
     };
 
     return {

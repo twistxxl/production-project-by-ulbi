@@ -10,13 +10,13 @@ describe('Пользователь заходит на страницу стат
     afterEach(() => {
         cy.removeArticle(currentArticleId);
     });
-    it.skip('И видит содержимое статьи', () => {
+    it('И видит содержимое статьи', () => {
         cy.getByTestId('ArticleDetails.Info').should('exist');
     });
-    it.skip('И видит список рекоммендаций', () => {
+    it('И видит список рекоммендаций', () => {
         cy.getByTestId('ArticleRecommendationsList').should('exist');
     });
-    it.skip('И оставляет комментарий', () => {
+    it('И оставляет комментарий', () => {
         cy.getByTestId('ArticleDetails.Info');
         cy.getByTestId('AddCommentForm').scrollIntoView();
         cy.addComment('text');
@@ -28,8 +28,7 @@ describe('Пользователь заходит на страницу стат
         cy.setRate(4, 'feedback');
         cy.get('[data-selected=true]').should('have.length', 4);
     });
-
-    it('И ставит оценку на стабах(фикстурах)', () => {
+    it('И ставит оценку (пример с стабом на фикстурах)', () => {
         cy.intercept('GET', '**/articles/*', {
             fixture: 'article-details.json',
         });

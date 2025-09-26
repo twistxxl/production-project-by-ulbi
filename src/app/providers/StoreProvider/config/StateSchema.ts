@@ -6,16 +6,16 @@ import {
 } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { AxiosInstance } from 'axios';
-import { CounterSchema } from '@/entities/Counter';
-import { UserSchema } from '@/entities/User';
 import { LoginSchema } from '@/features/AuthByUsername';
-import { ProfileSchema } from '@/features/editableProfileCard';
-import { ArticleDetailSchema } from '@/entities/Article';
-import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailPage';
-import { AddCommentFormSchema } from '@/features/AddcommentForm';
-import { ArticlesPageSchema } from '@/pages/ArticlePage';
-import { rtkApi } from '@/shared/api/rtkApi';
+import { UserSchema } from '@/entities/User';
+import { CounterSchema } from '@/entities/Counter';
+import { ArticleDetailsSchema } from '@/entities/Article';
+import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
+import { AddCommentFormSchema } from '@/features/addCommentForm';
+import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { UISchema } from '@/features/UI';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { ProfileSchema } from '@/features/editableProfileCard';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -26,7 +26,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
-    articleDetails?: ArticleDetailSchema;
+    articleDetails?: ArticleDetailsSchema;
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
     articleDetailsPage?: ArticleDetailsPageSchema;
@@ -43,7 +43,7 @@ export interface ReducerManager {
     ) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
-    // true - mounted, false - not mounted or unmounted
+    // true - вмонтирован, false - демонтирован
     getMountedReducers: () => MountedReducers;
 }
 
@@ -53,7 +53,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
     api: AxiosInstance;
-    // navigate?: (to: To, options?: NavigateOptions) => void,
 }
 
 export interface ThunkConfig<T> {

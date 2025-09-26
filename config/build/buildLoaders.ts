@@ -12,17 +12,17 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
             loader: '@svgr/webpack',
             options: {
                 icon: true,
-                svgoConfig : {
+                svgoConfig: {
                     plugins: [
                         {
                             name: 'convertColors',
                             params: {
                                 currentColor: true,
-                            },
-                        },
-                    ],
+                            }
+                        }
+                    ]
                 }
-            },
+            }
         }],
     };
 
@@ -32,11 +32,11 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     const cssLoader = buildCssLoader(isDev);
 
     // Если не используем тайпскрипт - нужен babel-loader
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-    };
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/,
+    //     use: 'ts-loader',
+    //     exclude: /node_modules/,
+    // };
 
     const fileLoader = {
         test: /\.(png|jpe?g|gif|woff2|woff)$/i,

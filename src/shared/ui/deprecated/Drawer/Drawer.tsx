@@ -1,18 +1,17 @@
-import { memo, useCallback, useEffect } from 'react';
-import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import { useModal } from '@/shared/lib/hooks/useModal/useModal';
-import { Overlay } from '../../redisigned/Overlay/Overlay';
+import React, { memo, ReactNode, useCallback, useEffect } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     AnimationProvider,
     useAnimationLibs,
-} from '../../../lib/components/AnimationProvider';
-import stl from './Drawer.module.scss';
-import { Portal } from '../../redisigned/Portal/Portal';
+} from '@/shared/lib/components/AnimationProvider';
+import { Overlay } from '../../redesigned/Overlay/Overlay';
+import cls from './Drawer.module.scss';
+import { Portal } from '../../redesigned/Portal/Portal';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 interface DrawerProps {
     className?: string;
-    children?: React.ReactNode;
+    children: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
     lazy?: boolean;
@@ -20,29 +19,18 @@ interface DrawerProps {
 
 const height = window.innerHeight - 100;
 
-
 /**
+ * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
 export const DrawerContent = memo((props: DrawerProps) => {
     const { Spring, Gesture } = useAnimationLibs();
-    const [{ y }, api] = Spring.useSpring(() => ({
-        y: height,
-    }));
+    const [{ y }, api] = Spring.useSpring(() => ({ y: height }));
     const { theme } = useTheme();
-    const { className, children, isOpen, onClose, lazy } = props;
+    const { className, children, onClose, isOpen, lazy } = props;
 
-    const { isClosing, isMounted, closeHandler } = useModal({
-        animationDelay: 300,
-        onClose,
-        isOpen,
-    });
     const openDrawer = useCallback(() => {
-        api.start({
-            y: 0,
-            immediate: false,
-        });
+        api.start({ y: 0, immediate: false });
     }, [api]);
 
     useEffect(() => {
@@ -68,10 +56,8 @@ export const DrawerContent = memo((props: DrawerProps) => {
             movement: [, my],
             cancel,
         }) => {
-            if (my < -70) {
-                cancel();
-                return;
-            }
+            if (my < -70) cancel();
+
             if (last) {
                 if (my > height * 0.5 || (vy > 0.5 && dy > 0)) {
                     close();
@@ -79,10 +65,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
                     openDrawer();
                 }
             } else {
-                api.start({
-                    y: my,
-                    immediate: true,
-                });
+                api.start({ y: my, immediate: true });
             }
         },
         {
@@ -99,30 +82,22 @@ export const DrawerContent = memo((props: DrawerProps) => {
 
     const display = y.to((py) => (py < height ? 'block' : 'none'));
 
-    const mods: Mods = {
-        [stl.opened]: isOpen,
-        [stl.isClosing]: isClosing,
-    };
-    if (lazy && !isMounted) {
-        return null;
-    }
-
     return (
         <Portal>
             <div
-                className={classNames(stl.Drawer, mods, [
+                className={classNames(cls.Drawer, {}, [
                     className,
                     theme,
                     'app_drawer',
                 ])}
             >
-                <Overlay onClick={closeHandler} />
+                <Overlay onClick={close} />
                 <Spring.a.div
-                    className={stl.content}
+                    className={cls.sheet}
                     style={{
                         display,
-                        y,
                         bottom: `calc(-100vh + ${height - 100}px)`,
+                        y,
                     }}
                     {...bind()}
                 >
@@ -139,11 +114,18 @@ const DrawerAsync = (props: DrawerProps) => {
     if (!isLoaded) {
         return null;
     }
+
     return <DrawerContent {...props} />;
 };
 
-export const Drawer = (props: DrawerProps) => (
-    <AnimationProvider>
-        <DrawerAsync {...props} />
-    </AnimationProvider>
-);
+/**
+ * Устарел, используем новые компоненты из папки redesigned
+ * @deprecated
+ */
+export const Drawer = (props: DrawerProps) => {
+    return (
+        <AnimationProvider>
+            <DrawerAsync {...props} />
+        </AnimationProvider>
+    );
+};

@@ -1,3 +1,1 @@
-export type SomeType = {
-    error: string;
-};
+export { ErrorPage } from './ui/ErrorPage';

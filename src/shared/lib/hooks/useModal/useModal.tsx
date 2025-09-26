@@ -1,20 +1,24 @@
 import {
+    MutableRefObject,
     useCallback,
     useEffect,
     useRef,
     useState,
-    MutableRefObject,
 } from 'react';
 
-interface ModalProps {
-    isOpen?: boolean;
+interface UseModalProps {
     onClose?: () => void;
-    animationDelay?: number;
+    isOpen?: boolean;
+    animationDelay: number;
 }
 
-export function useModal(props: ModalProps) {
-    const { isOpen, onClose, animationDelay } = props;
-
+/**
+ * Переиспользуемый хук для модальных компонентов (drawer/modal)
+ * @param animationDelay
+ * @param isOpen
+ * @param onClose
+ */
+export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const timerRef = useRef() as MutableRefObject<
@@ -27,7 +31,7 @@ export function useModal(props: ModalProps) {
         }
     }, [isOpen]);
 
-    const closeHandler = useCallback(() => {
+    const close = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
             timerRef.current = setTimeout(() => {
@@ -35,16 +39,16 @@ export function useModal(props: ModalProps) {
                 setIsClosing(false);
             }, animationDelay);
         }
-    }, [onClose, animationDelay]);
+    }, [animationDelay, onClose]);
 
     // Новые ссылки!!!
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
-                closeHandler();
+                close();
             }
         },
-        [closeHandler],
+        [close],
     );
 
     useEffect(() => {
@@ -57,9 +61,10 @@ export function useModal(props: ModalProps) {
             window.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpen, onKeyDown]);
+
     return {
         isClosing,
         isMounted,
-        closeHandler,
+        close,
     };
 }

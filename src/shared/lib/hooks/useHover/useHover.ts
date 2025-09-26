@@ -18,7 +18,7 @@ export const useHover = () => {
         setIsHover(false);
     }, []);
 
-    return useMemo<UseHoverResult>(
+    return useMemo(
         () => [
             isHover,
             {

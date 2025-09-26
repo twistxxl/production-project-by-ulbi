@@ -1,7 +1,8 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
-import avatar from '@/shared/assets/icons/avatar_test.jpg';
+import avatar from '@/shared/assets/tests/storybook.jpg';
 import { ProfileCard } from './ProfileCard';
 
 export default {
@@ -20,22 +21,22 @@ export const Primary = Template.bind({});
 Primary.args = {
     data: {
         username: 'admin',
-        first: 'blabla',
-        lastname: 'dili',
         age: 22,
-        country: Country.Belarus,
-        city: 'Minsk',
+        country: Country.Ukraine,
+        lastname: 'ulbi tv',
+        first: 'asd',
+        city: 'asf',
         currency: Currency.USD,
         avatar,
     },
 };
 
-export const isLoading = Template.bind({});
-isLoading.args = {
-    isLoading: true,
-};
-
 export const withError = Template.bind({});
 withError.args = {
     error: 'true',
+};
+
+export const Loading = Template.bind({});
+Loading.args = {
+    isLoading: true,
 };

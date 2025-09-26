@@ -1,21 +1,19 @@
-import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import React, { memo, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar';
 import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/Popups';
-import { getRouteProfile, getRouteAdminPanel } from '@/shared/const/router';
 import {
     getUserAuthData,
     isUserAdmin,
     isUserManager,
     userActions,
 } from '@/entities/User';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import stl from './AvatarDropdown.module.scss';
+import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 import { ToggleFeatures } from '@/shared/lib/features';
-import { Avatar } from '@/shared/ui/redisigned/Avatar';
-import { Dropdown } from '@/shared/ui/redisigned/Popups';
+import { Dropdown } from '@/shared/ui/redesigned/Popups';
+import { Avatar } from '@/shared/ui/redesigned/Avatar';
 
 interface AvatarDropdownProps {
     className?: string;
@@ -23,12 +21,11 @@ interface AvatarDropdownProps {
 
 export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     const { className } = props;
-
     const { t } = useTranslation();
-    const dispatch = useAppDispatch();
-    const authData = useSelector(getUserAuthData);
+    const dispatch = useDispatch();
     const isAdmin = useSelector(isUserAdmin);
     const isManager = useSelector(isUserManager);
+    const authData = useSelector(getUserAuthData);
 
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
@@ -43,21 +40,21 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     const items = [
         ...(isAdminPanelAvailable
             ? [
-                {
-                    content: t('Админка '),
-                    href: getRouteAdminPanel(),
-                },
-            ]
+                  {
+                      content: t('Админка'),
+                      href: getRouteAdmin(),
+                  },
+              ]
             : []),
         {
-            content: t('Профиль '),
+            content: t('Профиль'),
             href: getRouteProfile(authData.id),
         },
         {
             content: t('Выйти'),
             onClick: onLogout,
         },
-    ]
+    ];
 
     return (
         <ToggleFeatures
@@ -65,20 +62,22 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
             on={
                 <Dropdown
                     direction="bottom left"
-                    className={classNames(stl.AvatarDropdown, {}, [className])}
+                    className={classNames('', {}, [className])}
                     items={items}
-                    trigger={
-                        <Avatar size={40} src={authData.avatar} />
-                    }
+                    trigger={<Avatar size={40} src={authData.avatar} />}
                 />
             }
             off={
                 <DropdownDeprecated
                     direction="bottom left"
-                    className={classNames(stl.AvatarDropdown, {}, [className])}
+                    className={classNames('', {}, [className])}
                     items={items}
                     trigger={
-                        <AvatarDeprecated fallbackInverted size={30} src={authData.avatar} />
+                        <AvatarDeprecated
+                            fallbackInverted
+                            size={30}
+                            src={authData.avatar}
+                        />
                     }
                 />
             }

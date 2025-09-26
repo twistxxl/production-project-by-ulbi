@@ -1,6 +1,3 @@
-import { User } from '../../../src/entities/User';
-import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage';
-
 export const updateProfile = (firstname: string, lastname: string) => {
     cy.getByTestId('EditableProfileCardHeader.EditButton').click();
     cy.getByTestId('ProfileCard.firstname').clear().type(firstname);
@@ -12,19 +9,17 @@ export const resetProfile = (profileId: string) => {
     return cy.request({
         method: 'PUT',
         url: `http://localhost:8000/profile/${profileId}`,
-        headers: {
-            Authorization: 'Bearer123',
-        },
+        headers: { Authorization: 'asasf' },
         body: {
             id: '4',
-            first: 'Джейсон',
-            lastname: 'Стетхем',
-            age: 52,
-            currency: 'RUB',
+            first: 'test',
+            lastname: 'user',
+            age: 465,
+            currency: 'EUR',
             country: 'Ukraine',
-            city: 'Kiev',
+            city: 'Moscow',
             username: 'testuser',
-            avatar: 'https://avatars.mds.yandex.net/get-yapic/29310/9rKv7Y3Ldh5E0pKfVdzy9LGWkI-1/orig',
+            avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
         },
     });
 };
@@ -32,13 +27,8 @@ export const resetProfile = (profileId: string) => {
 declare global {
     namespace Cypress {
         interface Chainable {
-            updateProfile(
-                firstname?: string,
-                lastname?: string,
-            ): Chainable<User>;
+            updateProfile(firstname: string, lastname: string): Chainable<void>;
             resetProfile(profileId: string): Chainable<void>;
         }
     }
 }
-
-export {};

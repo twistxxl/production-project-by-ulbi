@@ -1,15 +1,9 @@
 import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
     plugins: [svgr({ exportAsDefault: true }), react()],
-    build: {
-        target: 'ESNext',
-    },
-    esbuild: {
-        target: 'ESNext',
-    },
     resolve: {
         alias: [{ find: '@', replacement: '/src' }],
     },

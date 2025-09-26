@@ -30,8 +30,9 @@
     color: var(--primary-color);
     background: none;
 }
-.outlineInverted {
-    border: 1px solid var(--inverted-primary-color);
+
+.outline_red {
+    border: 1px solid var(--red-light);
     color: var(--red-light);
     background: none;
 }

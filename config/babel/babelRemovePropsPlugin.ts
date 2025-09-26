@@ -5,6 +5,7 @@ export default function (): PluginItem {
         visitor: {
             Program(path, state) {
                 const forbidden = state.opts.props || [];
+
                 path.traverse({
                     JSXIdentifier(current) {
                         const nodeName = current.node.name;

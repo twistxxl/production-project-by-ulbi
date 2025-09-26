@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ArticleDetailSchema } from '../types/articleDetailSchema';
+import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
 import { Article } from '../types/article';
-import { fetchArticleById } from '../services/fetchArticleById';
+import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 
-const initialState: ArticleDetailSchema = {
+const initialState: ArticleDetailsSchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
@@ -33,6 +33,5 @@ export const articleDetailsSlice = createSlice({
     },
 });
 
-// Action creators are generated for each case reducer function
 export const { actions: articleDetailsActions } = articleDetailsSlice;
 export const { reducer: articleDetailsReducer } = articleDetailsSlice;

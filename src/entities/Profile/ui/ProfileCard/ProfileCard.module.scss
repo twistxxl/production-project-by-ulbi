@@ -3,20 +3,11 @@
     border: 2px solid var(--inverted-bg-color);
 }
 
-.header {
-    display: flex;
-}
-
-.editBtn {
-    margin-left: auto;
-}
-
-
-.loading {
+.loading,
+.error {
     height: 300px;
 }
 
 .editing {
-        border: 2px solid var(--inverted-primary-color);
-
+    border: 2px solid var(--inverted-primary-color);
 }

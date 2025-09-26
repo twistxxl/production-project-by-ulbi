@@ -1,11 +1,11 @@
 import { Menu } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { DropdownDirection } from '../../../../../types/ui';
-import { AppLink } from '../../../../deprecated/AppLink/AppLink';
-import { mapDirectionClass } from '../styles/consts';
+import { DropdownDirection } from '@/shared/types/ui';
+import { AppLink } from '../../../AppLink/AppLink';
 import cls from './Dropdown.module.scss';
-import popupCls from '../styles/popup.module.scss';
+import { mapDirectionClass } from '../../styles/consts';
+import popupCls from '../../styles/popup.module.scss';
 
 export interface DropdownItem {
     disabled?: boolean;
@@ -22,9 +22,9 @@ interface DropdownProps {
 }
 
 /**
+ * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
 export function Dropdown(props: DropdownProps) {
     const { className, trigger, items, direction = 'bottom right' } = props;
 
@@ -56,12 +56,11 @@ export function Dropdown(props: DropdownProps) {
 
                     if (item.href) {
                         return (
-                            // eslint-disable-next-line react/no-array-index-key
                             <Menu.Item
-                                key={`dropdown-key-${index}`}
                                 as={AppLink}
                                 to={item.href}
                                 disabled={item.disabled}
+                                key={`dropdown-key-${index}`}
                             >
                                 {content}
                             </Menu.Item>
@@ -69,7 +68,6 @@ export function Dropdown(props: DropdownProps) {
                     }
 
                     return (
-                        // eslint-disable-next-line react/no-array-index-key
                         <Menu.Item
                             key={`dropdown-key-${index}`}
                             as={Fragment}

@@ -1,10 +1,10 @@
 import { EditableProfileCard } from '@/features/editableProfileCard';
 import { TestProvider } from '@/shared/lib/tests/componentRender/componentRender';
 
-const user_id = '4';
+const USER_ID = '1';
 
 describe('EditableProfileCard.cy.tsx', () => {
-    it('should render component', () => {
+    it('playground', () => {
         cy.intercept('GET', '**/profile/*', { fixture: 'profile.json' });
         cy.mount(
             <TestProvider
@@ -12,14 +12,15 @@ describe('EditableProfileCard.cy.tsx', () => {
                     initialState: {
                         user: {
                             authData: {
-                                id: user_id,
+                                id: USER_ID,
                             },
                         },
                     },
                 }}
             >
-                <EditableProfileCard id={user_id} />
+                <EditableProfileCard id={USER_ID} />
             </TestProvider>,
         );
+        // описываем тест кейс
     });
 });

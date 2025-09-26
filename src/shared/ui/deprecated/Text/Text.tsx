@@ -3,15 +3,17 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Text.module.scss';
 
 export enum TextTheme {
-    INVERTED = 'inverted',
     PRIMARY = 'primary',
+    INVERTED = 'inverted',
     ERROR = 'error',
 }
+
 export enum TextAlign {
     RIGHT = 'right',
     LEFT = 'left',
     CENTER = 'center',
 }
+
 export enum TextSize {
     S = 'size_s',
     M = 'size_m',
@@ -25,8 +27,10 @@ interface TextProps {
     theme?: TextTheme;
     align?: TextAlign;
     size?: TextSize;
+
     'data-testid'?: string;
 }
+
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
@@ -36,9 +40,9 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
 };
 
 /**
+ * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
 export const Text = memo((props: TextProps) => {
     const {
         className,
@@ -69,12 +73,9 @@ export const Text = memo((props: TextProps) => {
                 </HeaderTag>
             )}
             {text && (
-                <HeaderTag
-                    className={cls.text}
-                    data-testid={`${dataTestId}.Paragraph`}
-                >
+                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
                     {text}
-                </HeaderTag>
+                </p>
             )}
         </div>
     );

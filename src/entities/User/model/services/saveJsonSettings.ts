@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { JsonSettings } from '../types/jsonSettings';
 import { getUserAuthData } from '../selectors/getUserAuthData/getUserAuthData';
-import { getJsonSettings } from '../selectors/getUserInited/jsonSettings';
+import { getJsonSettings } from '../selectors/jsonSettings';
 import { setJsonSettingsMutation } from '../../api/userApi';
 
 export const saveJsonSettings = createAsyncThunk<
@@ -12,31 +12,30 @@ export const saveJsonSettings = createAsyncThunk<
 >('user/saveJsonSettings', async (newJsonSettings, thunkApi) => {
     const { rejectWithValue, getState, dispatch } = thunkApi;
     const userData = getUserAuthData(getState());
-    const currentJsonSettings = getJsonSettings(getState());
+    const currentSettings = getJsonSettings(getState());
 
     if (!userData) {
-        return rejectWithValue('no data');
+        return rejectWithValue('');
     }
-    const userId = userData.id;
-    const jsonSettings = {
-        ...currentJsonSettings,
-        ...newJsonSettings,
-    };
 
     try {
-        const response = await dispatch(setJsonSettingsMutation({
-            userId,
-            jsonSettings,
-        })).unwrap();
+        const response = await dispatch(
+            setJsonSettingsMutation({
+                userId: userData.id,
+                jsonSettings: {
+                    ...currentSettings,
+                    ...newJsonSettings,
+                },
+            }),
+        ).unwrap();
 
         if (!response.jsonSettings) {
-            return rejectWithValue('error');
+            return rejectWithValue('');
         }
 
         return response.jsonSettings;
     } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(`error: ${e}`);
-        return rejectWithValue('error');
+        console.log(e);
+        return rejectWithValue('');
     }
 });

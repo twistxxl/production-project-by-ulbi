@@ -56,7 +56,6 @@
     }
 
     .items {
-        margin-left: 20px;
         margin-top: 40px;
     }
 
@@ -65,8 +64,7 @@
         right: 0;
         top: 50%;
         z-index: 10;
-        transition: 0.3s ease-in-out;
-
+        transform: rotate(90deg);
     }
 
     .switchers {
@@ -97,8 +95,7 @@
     }
 
     .collapseBtn {
-        transition: 0.3s ease-in-out;
-        transform: rotate(-180deg);
+        transform: rotate(-90deg);
     }
 
     .switchers {

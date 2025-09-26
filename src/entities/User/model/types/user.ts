@@ -1,11 +1,6 @@
-import { FeatureFlags } from "@/shared/types/featureFlags";
-import { JsonSettings } from "./jsonSettings";
-
-export enum UserRole {
-    USER = 'USER',
-    ADMIN = 'ADMIN',
-    MANAGER = 'MANAGER',
-}
+import { UserRole } from '../consts/userConsts';
+import { FeatureFlags } from '@/shared/types/featureFlags';
+import { JsonSettings } from './jsonSettings';
 
 export interface User {
     id: string;

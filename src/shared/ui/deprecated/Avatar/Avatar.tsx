@@ -1,9 +1,9 @@
-import { FC, useMemo } from 'react';
+import { CSSProperties, useMemo } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
-import stl from './Avatar.module.scss';
-import { AppImage } from '../../redisigned/AppImage';
-import UserIcon from '../../../assets/icons/user-32-32.svg';
-import { Icon } from '../../deprecated/Icon';
+import cls from './Avatar.module.scss';
+import { AppImage } from '../../redesigned/AppImage';
+import UserIcon from '../../../assets/icons/user-filled.svg';
+import { Icon } from '../Icon';
 import { Skeleton } from '../Skeleton';
 
 interface AvatarProps {
@@ -15,22 +15,22 @@ interface AvatarProps {
 }
 
 /**
+ * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
-export const Avatar: FC<AvatarProps> = ({
+export const Avatar = ({
     className,
     src,
-    size,
+    size = 100,
     alt,
     fallbackInverted,
-}) => {
+}: AvatarProps) => {
     const mods: Mods = {};
 
-    const styles = useMemo<React.CSSProperties>(
+    const styles = useMemo<CSSProperties>(
         () => ({
-            width: size || 100,
-            height: size || 100,
+            width: size,
+            height: size,
         }),
         [size],
     );
@@ -52,7 +52,7 @@ export const Avatar: FC<AvatarProps> = ({
             src={src}
             alt={alt}
             style={styles}
-            className={classNames(stl.Avatar, mods, [className])}
+            className={classNames(cls.Avatar, mods, [className])}
         />
     );
 };

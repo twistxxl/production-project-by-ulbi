@@ -1,41 +1,38 @@
-import { FC, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 import { Reducer } from '@reduxjs/toolkit';
-import { StateSchema } from '@/app/providers/StoreProvider/config/StateSchema';
 import {
     ReduxStoreWithManager,
+    StateSchema,
     StateSchemaKey,
-} from '@/app/providers/StoreProvider/config/StateSchema';
+} from '@/app/providers/StoreProvider';
 
 export type ReducersList = {
     [name in StateSchemaKey]?: Reducer<NonNullable<StateSchema[name]>>;
 };
-// export type ReducersList = {
-//     [name in StateSchemaKey]?: Reducer;
-// }
 
 interface DynamicModuleLoaderProps {
     reducers: ReducersList;
     removeAfterUnmount?: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
-export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
+export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
     const { children, reducers, removeAfterUnmount = true } = props;
 
     const store = useStore() as ReduxStoreWithManager;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const mountedReducers = store.reducerManager.getReducerMap();
+        const mountedReducers = store.reducerManager.getMountedReducers();
+
         Object.entries(reducers).forEach(([name, reducer]) => {
             const mounted = mountedReducers[name as StateSchemaKey];
-            // добавлять новый редюсер только если его еще нет
+            // Добавляем новый редюсер только если его нет
             if (!mounted) {
                 store.reducerManager.add(name as StateSchemaKey, reducer);
+                dispatch({ type: `@INIT ${name} reducer` });
             }
-            store.reducerManager.add(name as StateSchemaKey, reducer);
-            dispatch({ type: `@INIT ${name} reducer` });
         });
 
         return () => {

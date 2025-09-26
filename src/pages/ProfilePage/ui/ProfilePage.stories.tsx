@@ -1,11 +1,11 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/shared/const/theme';
-import ProfilePage from '@/pages/ProfilePage/ui/ProfilePage';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
-import avatar from '@/shared/assets/icons/avatar_test.jpg';
+import ProfilePage from './ProfilePage';
+import { Theme } from '@/shared/const/theme';
 
 export default {
     title: 'pages/ProfilePage',
@@ -26,13 +26,12 @@ Normal.decorators = [
         profile: {
             form: {
                 username: 'admin',
-                first: 'blabla',
-                lastname: 'dili',
                 age: 22,
-                country: Country.Belarus,
-                city: 'Minsk',
+                country: Country.Ukraine,
+                lastname: 'ulbi tv',
+                first: 'asd',
+                city: 'asf',
                 currency: Currency.USD,
-                avatar,
             },
         },
     }),
@@ -40,4 +39,19 @@ Normal.decorators = [
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({
+        profile: {
+            form: {
+                username: 'admin',
+                age: 22,
+                country: Country.Ukraine,
+                lastname: 'ulbi tv',
+                first: 'asd',
+                city: 'asf',
+                currency: Currency.USD,
+            },
+        },
+    }),
+];

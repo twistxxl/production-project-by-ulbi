@@ -1,4 +1,4 @@
-export type { UISchema } from '../UI/types/UISchema';
+export type { UISchema } from './model/types/UISchema';
 
-export { getUIScrollByPath } from '../UI/selectors/ui';
-export { uiActions, uiReducer } from '../UI/slices/UISlice';
+export { getUIScrollByPath } from './model/selectors/ui';
+export { uiReducer, uiActions } from './model/slices/UISlice';

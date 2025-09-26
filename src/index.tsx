@@ -8,9 +8,13 @@ import './shared/config/i18n/i18n';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
 
 const container = document.getElementById('root');
+
 if (!container) {
-    throw new Error('Контейнер root не найден');
+    throw new Error(
+        'Контейнер root не найден. НЕ удалось вмонтировать реакт приложение',
+    );
 }
+
 const root = createRoot(container);
 
 root.render(
@@ -24,3 +28,4 @@ root.render(
         </StoreProvider>
     </BrowserRouter>,
 );
+export { Theme } from '@/shared/const/theme';

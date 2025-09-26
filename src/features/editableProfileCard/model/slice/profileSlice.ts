@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Profile } from '@/entities/Profile';
-import { ProfileSchema } from '../types/editableProfileCardSchema';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+import { ProfileSchema } from '../types/editableProfileCardSchema';
 
 const initialState: ProfileSchema = {
     readonly: true,
@@ -19,13 +19,13 @@ export const profileSlice = createSlice({
             state.readonly = action.payload;
         },
         cancelEdit: (state) => {
-            state.form = state.data;
             state.readonly = true;
             state.validateErrors = undefined;
+            state.form = state.data;
         },
         updateProfile: (state, action: PayloadAction<Profile>) => {
             state.form = {
-                ...state.data,
+                ...state.form,
                 ...action.payload,
             };
         },
@@ -48,7 +48,6 @@ export const profileSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload;
             })
-            // updateProfileData
             .addCase(updateProfileData.pending, (state) => {
                 state.validateErrors = undefined;
                 state.isLoading = true;

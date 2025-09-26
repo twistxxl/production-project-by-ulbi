@@ -1,7 +1,8 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import withMock from 'storybook-addon-mock';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { Article, ArticleType } from '@/entities/Article';
+import { Article } from '@/entities/Article';
 import { ArticleRecommendationsList } from './ArticleRecommendationsList';
 
 export default {
@@ -10,29 +11,23 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    decorators: [withMock],
 } as ComponentMeta<typeof ArticleRecommendationsList>;
 
 const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => (
     <ArticleRecommendationsList {...args} />
 );
 
-const article: Article[] = [
-    {
-        id: '1',
-        title: 'Javascript news',
-        subtitle: 'Что нового в JS за 2022 год?',
-        img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
-        views: 1022,
-        createdAt: '26.02.2022',
-        user: {
-            id: '1',
-            username: 'admin',
-        },
-        type: [ArticleType.IT],
-        blocks: [],
-    },
-];
+const article: Article = {
+    id: '1',
+    img: '',
+    createdAt: '',
+    views: 123,
+    user: { id: '1', username: '123' },
+    blocks: [],
+    type: [],
+    title: '123',
+    subtitle: 'asfsa',
+};
 
 export const Normal = Template.bind({});
 Normal.args = {};

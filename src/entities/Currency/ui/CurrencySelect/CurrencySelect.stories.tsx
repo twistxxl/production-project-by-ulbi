@@ -1,5 +1,5 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-
 import { CurrencySelect } from './CurrencySelect';
 
 export default {
@@ -7,9 +7,6 @@ export default {
     component: CurrencySelect,
     argTypes: {
         backgroundColor: { control: 'color' },
-    },
-    args: {
-        to: '/',
     },
 } as ComponentMeta<typeof CurrencySelect>;
 

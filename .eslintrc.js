@@ -28,10 +28,12 @@ module.exports = {
         'unused-imports',
     ],
     rules: {
-        'linebreak-style': 'off',
+        'unused-imports/no-unused-imports': 'error',
         'react/jsx-filename-extension': [
             2,
-            { extensions: ['.js', '.jsx', '.tsx'] },
+            {
+                extensions: ['.js', '.jsx', '.tsx'],
+            },
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
@@ -43,34 +45,51 @@ module.exports = {
         'no-shadow': 'off',
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
-        'unused-imports/no-unused-imports': 'error',
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [
             'error',
             {
                 markupOnly: true,
                 ignoreAttribute: [
-                    'border',
                     'as',
+                    'role',
                     'data-testid',
                     'to',
                     'target',
                     'justify',
                     'align',
+                    'border',
                     'direction',
                     'gap',
-                    'role',
+                    'feature',
+                    'color',
+                    'variant',
                 ],
             },
         ],
-        'max-len': ['error', { ignoreComments: true, code: 150 }],
+        'max-len': [
+            'error',
+            {
+                ignoreComments: true,
+                code: 125,
+            },
+        ],
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
-        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
+        'react-hooks/rules-of-hooks': 'error',
+        // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error',
+        // Checks effect dependencies,
         'no-param-reassign': 'off',
         'no-undef': 'off',
-        'ulbi-tv-plugin/path-checker': ['error', { alias: '@' }],
+        'react/no-array-index-key': 'off',
+        'arrow-body-style': 'off',
+        'ulbi-tv-plugin/path-checker': [
+            'error',
+            {
+                alias: '@',
+            },
+        ],
         'ulbi-tv-plugin/layer-imports': [
             'error',
             {
@@ -78,12 +97,18 @@ module.exports = {
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
-        'ulbi-tv-plugin/public-api-imports': ['error', 
+        'ulbi-tv-plugin/public-api-imports': [
+            'error',
             {
                 alias: '@',
-                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
-            }],
-        'react/jsx-max-props-per-line': ['error', { maximum: 3 }],
+                testFilesPatterns: [
+                    '**/*.test.*',
+                    '**/*.story.*',
+                    '**/StoreDecorator.tsx',
+                ],
+            },
+        ],
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
         'react/no-unstable-nested-components': 'warn',
     },
     globals: {

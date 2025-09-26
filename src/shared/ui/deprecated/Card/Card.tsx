@@ -1,23 +1,24 @@
+import { HTMLAttributes, memo, ReactNode } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import stl from './Card.module.scss';
+import cls from './Card.module.scss';
 
 export enum CardTheme {
     NORMAL = 'normal',
     OUTLINED = 'outlined',
 }
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
-    children: React.ReactNode;
+    children: ReactNode;
     theme?: CardTheme;
     max?: boolean;
 }
 
 /**
+ * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-
-export const Card = (props: CardProps) => {
+export const Card = memo((props: CardProps) => {
     const {
         className,
         children,
@@ -25,15 +26,16 @@ export const Card = (props: CardProps) => {
         max,
         ...otherProps
     } = props;
+
     return (
         <div
-            className={classNames(stl.Card, { [stl.max]: max }, [
+            className={classNames(cls.Card, { [cls.max]: max }, [
                 className,
-                stl[theme],
+                cls[theme],
             ])}
             {...otherProps}
         >
             {children}
         </div>
     );
-};
+});

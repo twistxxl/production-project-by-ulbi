@@ -1,29 +1,27 @@
-let profileId: string;
+let profileId = '';
 
 describe('Пользователь заходит на страницу профиля', () => {
     beforeEach(() => {
-        cy.visit('profile');
-        cy.login().then((user) => {
-            profileId = user.id;
-            cy.visit(`profile/${user.id}`);
+        cy.visit('');
+        cy.login().then((data) => {
+            profileId = data.id;
+            cy.visit(`profile/${data.id}`);
         });
     });
-
     afterEach(() => {
         cy.resetProfile(profileId);
     });
-
-    it('и прфоиль успешно загружается ', () => {
-        cy.getByTestId('ProfileCard.firstname').should('have.value', 'Джейсон');
+    it('И профиль успешно загружается', () => {
+        cy.getByTestId('ProfileCard.firstname').should('have.value', 'test');
     });
-
-    it('и редактирует его ', () => {
-        const user = { firstname: 'Vasya', lastname: 'Pupkin' };
-        cy.updateProfile(user.firstname, user.lastname);
-        cy.getByTestId('ProfileCard.firstname').should('have.value', 'Джейсон');
+    it('И редактирует его', () => {
+        const newName = 'new';
+        const newLastname = 'lastname';
+        cy.updateProfile(newName, newLastname);
+        cy.getByTestId('ProfileCard.firstname').should('have.value', newName);
         cy.getByTestId('ProfileCard.lastname').should(
             'have.value',
-            user.lastname,
+            newLastname,
         );
     });
 });

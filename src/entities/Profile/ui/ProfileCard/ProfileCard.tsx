@@ -6,7 +6,7 @@ import { Loader } from '@/shared/ui/deprecated/Loader';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
 import { Currency, CurrencySelect } from '@/entities/Currency';
 import { Country, CountrySelect } from '@/entities/Country';
-import { HStack, VStack } from '@/shared/ui/redisigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model/types/profile';
 
@@ -16,39 +16,39 @@ interface ProfileCardProps {
     error?: string;
     isLoading?: boolean;
     readonly?: boolean;
-    onChangeFirstname?: (value: string) => void;
-    onChangeLastname?: (value: string) => void;
-    onChangeAge?: (value: string) => void;
-    onChangeUsername?: (value: string) => void;
-    onChangeCity?: (value: string) => void;
-    onChangeAvatar?: (value: string) => void;
-    onChangeCountry?: (value: Country) => void;
+    onChangeLastname?: (value?: string) => void;
+    onChangeFirstname?: (value?: string) => void;
+    onChangeCity?: (value?: string) => void;
+    onChangeAge?: (value?: string) => void;
+    onChangeUsername?: (value?: string) => void;
+    onChangeAvatar?: (value?: string) => void;
     onChangeCurrency?: (currency: Currency) => void;
+    onChangeCountry?: (country: Country) => void;
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
     const {
         className,
         data,
-        error,
         isLoading,
+        error,
         readonly,
         onChangeFirstname,
         onChangeLastname,
         onChangeAge,
-        onChangeUsername,
         onChangeCity,
         onChangeAvatar,
+        onChangeUsername,
         onChangeCountry,
         onChangeCurrency,
     } = props;
-
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     if (isLoading) {
         return (
             <HStack
                 justify="center"
+                max
                 className={classNames(
                     cls.ProfileCard,
                     { [cls.loading]: true },
@@ -71,9 +71,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 ])}
             >
                 <Text
-                    title={t('Произошла ошибка')}
                     theme={TextTheme.ERROR}
-                    text={t('Попробуйте обновить страницу')}
+                    title={t('Произошла ошибка при загрузке профиля')}
+                    text={t('Попробуйте обновить страницу')}
                     align={TextAlign.CENTER}
                 />
             </HStack>
@@ -86,13 +86,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     return (
         <VStack
-            gap="16"
+            gap="8"
             max
             className={classNames(cls.ProfileCard, mods, [className])}
         >
             {data?.avatar && (
                 <HStack justify="center" max className={cls.avatarWrapper}>
-                    <Avatar src={data?.avatar} alt={t('Аватарка')} />
+                    <Avatar src={data?.avatar} />
                 </HStack>
             )}
             <Input
@@ -120,21 +120,21 @@ export const ProfileCard = (props: ProfileCardProps) => {
             />
             <Input
                 value={data?.city}
-                placeholder={t('Ваш город')}
+                placeholder={t('Город')}
                 className={cls.input}
                 onChange={onChangeCity}
                 readonly={readonly}
             />
             <Input
                 value={data?.username}
-                placeholder={t('Ваш ник')}
+                placeholder={t('Введите имя пользователя')}
                 className={cls.input}
                 onChange={onChangeUsername}
                 readonly={readonly}
             />
             <Input
                 value={data?.avatar}
-                placeholder={t('Ваша аватарка')}
+                placeholder={t('Введите ссылку на аватар')}
                 className={cls.input}
                 onChange={onChangeAvatar}
                 readonly={readonly}

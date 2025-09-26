@@ -1,18 +1,17 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import withMock from 'storybook-addon-mock';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
 import { NotificationList } from './NotificationList';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'entities/NotificationList',
+    title: 'entities/Notification/NotificationList',
     component: NotificationList,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    decorators: [withMock],
 } as ComponentMeta<typeof NotificationList>;
 
-// eslint-disable-next-line react/jsx-props-no-spreading
 const Template: ComponentStory<typeof NotificationList> = (args) => (
     <NotificationList {...args} />
 );
@@ -30,17 +29,20 @@ Normal.parameters = {
                 {
                     id: '1',
                     title: 'Уведомление',
-                    description: 'Уведомление о новой статье',
+                    description:
+                        'Поставь лайк и оставь комментарий под Ulbi TV',
                 },
                 {
                     id: '2',
-                    title: 'Уведомление',
-                    description: 'Уведомление о новой статье',
+                    title: 'Уведомление 2',
+                    description:
+                        'Поставь лайк и оставь комментарий под Ulbi TV',
                 },
                 {
                     id: '3',
-                    title: 'Уведомление',
-                    description: 'Уведомление о новой статье',
+                    title: 'Уведомление 3',
+                    description:
+                        'Поставь лайк и оставь комментарий под Ulbi TV',
                 },
             ],
         },
